@@ -1,101 +1,104 @@
 <script>
-    import { onMount } from "svelte";
-    import NavBar from './components/NavBar.svelte';
+  import NavBar from './components/NavBar.svelte';
+  import { push } from "svelte-spa-router";
 
-  
-    let user = "Usuario";
-    let modules = [
-      { name: "Compras", icon: "🛒" },
-      { name: "Contabilidad", icon: "📑" },
-      { name: "Finanzas", icon: "💰" },
-      { name: "Inventario", icon: "📦" },
-      { name: "Ventas", icon: "📊" }
-    ];
-  </script>
-  
-  <style>
-    .container {
-      display: flex;
-      height: 100vh;
-    }
-    .sidebar {
-      width: 250px;
-      background: #2d2d2d;
-      color: white;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar h2 {
-      margin-bottom: 20px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sidebar ul li {
-      padding: 10px;
-      cursor: pointer;
-    }
-    .sidebar ul li:hover {
-      background: #444;
-    }
-    .content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      background: #f4f4f4;
-    }
-    .header {
-      background: white;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-    }
-    .search {
-      padding: 8px;
-      width: 200px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .module {
-      background: white;
-      padding: 20px;
-      text-align: center;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .module:hover {
-      background: #e0e0e0;
-    }
-  </style>
-  
-  <div class="container">
-    <div class="sidebar">
-      <h2>Odoo</h2>
-      <ul>
-        {#each modules as module}
-          <li>{module.icon} {module.name}</li>
-        {/each}
-      </ul>
-    </div>
-    <div class="content">
-      <div class="header">
-        <input class="search" type="text" placeholder="Buscar..." />
-        <span>{user}</span>
-      </div>
-      <div class="grid">
-        {#each modules as module}
-          <div class="module">{module.icon}<br />{module.name}</div>
-        {/each}
-      </div>
+  // Función para cerrar sesión (redirigir al login)
+  function logout() {
+    push("/login"); // Redirige al login sin usar Firebase
+  }
+</script>
+
+<!-- Contenedor Principal -->
+<div class="container">
+  <!-- Barra lateral -->
+  <div class="sidebar">
+    <h2>ERP</h2>
+    <ul>
+      <li>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 4H17V6H7V4Z" fill="white"/>
+          <path d="M4 10H20V12H4V10Z" fill="white"/>
+          <path d="M10 16H14V18H10V16Z" fill="white"/>
+        </svg>
+        <span>Menú</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contenido -->
+  <div class="content">
+    <!-- Barra de navegación -->
+    <NavBar />
+
+    <!-- Botón de Cerrar Sesión -->
+    <div class="logout-container">
+      <button class="logout-button" on:click={logout}>Cerrar sesión</button>
     </div>
   </div>
-  
+</div>
+
+<style>
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .sidebar {
+    width: 250px;
+    background: #2d2d2d;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar h2 {
+    margin-bottom: 20px;
+  }
+
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .sidebar ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .sidebar ul li:hover {
+    background: #444;
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f4f4f4;
+  }
+
+  .logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logout-button {
+    background-color: red;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .logout-button:hover {
+    background-color: darkred;
+  }
+</style>
