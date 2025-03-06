@@ -4,10 +4,10 @@
 
 <div class="sidebar">
   <div>
-    <h2>Elius</h2>
+    <h1>Elius</h1>
     <ul>
       {#each modules as module}
-        <li on:click={()=>irA(module.ruta)}>{module.icon} {module.name}</li>
+        <li on:click={()=>irA(module.ruta)}><img src={`/icons/${module.icon}`} alt="" width="24" height="24">{module.name}</li>
       {/each}
     </ul>
   </div>
@@ -16,16 +16,19 @@
 <style>
   .sidebar {
     width: 250px;
-    background: #2d2d2d;
-    color: white;
+    background: #ffffff;
+    color: #012B66;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-right: 1px solid #ddd;
+
   }
 
-  .sidebar h2 {
+  .sidebar h1 {
     margin-bottom: 20px;
+    color: #2563eb;
   }
 
   .sidebar ul {
@@ -35,10 +38,15 @@
 
   .sidebar ul li {
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     cursor: pointer;
+    gap: 5px;
   }
 
+
   .sidebar ul li:hover {
-    background: #444;
+    background: #f0f0f0;
   }
 </style>

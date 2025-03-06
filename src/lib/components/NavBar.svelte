@@ -17,7 +17,7 @@
   <style>
   .header {
     background: white;
-    padding: 10px 20px;
+    padding: 20px 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -26,8 +26,11 @@
   }
   
   .search {
-    padding: 8px;
+    padding: 10px;
     width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+
   }
   .logout-button {
     background-color: #2563eb;
@@ -42,6 +45,6 @@
   }
   
   .logout-button:hover {
-    background-color: #1a53ce;
+    background-color: #1c52c5;
   }
 </style>
