@@ -1,19 +1,19 @@
-
 <script>
-  import { navigate } from "svelte-routing";
-
   import usuariosJSON from "../data/usuarios.json";
+  import { push } from "svelte-spa-router";
 
   let email = "";
   let password = "";
-  let error = "";
+  let error = false;
 
   function validarDatos() {
     if (
       email === usuariosJSON.usuarios[0].correo &&
       password === usuariosJSON.usuarios[0].contrasena
     ) {
-      navigate("/inicio");
+      push("/inicio");
+    } else {
+      error = true;
     }
   }
 </script>
@@ -48,7 +48,7 @@
 
       <!-- Muestra un mensaje de error si la autenticación falla -->
       {#if error}
-        <div class="error">{error}</div>
+        <div class="error">Credenciales Incorrectas</div>
       {/if}
 
       <button type="submit" class="boton"> Iniciar Sesión </button>
@@ -58,7 +58,6 @@
     <div class="demo-credentials">
       <p>Credenciales de prueba:</p>
       <code>admin@example.com / admin</code>
-      <code>user@example.com / user</code>
     </div>
   </div>
 </div>
