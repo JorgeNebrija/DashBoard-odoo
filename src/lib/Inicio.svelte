@@ -13,7 +13,7 @@
   <div class="content">
     <NavBar />
     <div class="grid">
-      {#each modules as module}
+      {#each modules.slice(0, 5) as module}
         <div class="module" on:click={()=>irA(module.ruta)}> <img src={`/icons/${module.icon}`} alt="" width="24" height="24"> <br />{module.name}
         </div>
       {/each}
