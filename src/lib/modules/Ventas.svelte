@@ -1,11 +1,44 @@
 <script>
   import NavBar from './../components/NavBar.svelte';
-  import ventasData from "../../data/ventas.json"; // Importar JSON directamente
+  import ventasData from "../../data/ventas.json";
+  import { onMount } from "svelte";
+  import Chart from "chart.js/auto";
 
-  // Asignar los datos del JSON a las variables reactivas
   let ventas = ventasData.ventas;
   let productosDestacados = ventasData.productosDestacados;
   let estadisticas = ventasData.estadisticas;
+
+  let chartCanvas; // Referencia al canvas del gráfico
+
+  onMount(() => {
+    if (chartCanvas) {
+      new Chart(chartCanvas, {
+        type: "bar",
+        data: {
+          labels: productosDestacados.map((p) => p.nombre),
+          datasets: [
+            {
+              label: "Ingresos Generados ($)",
+              data: productosDestacados.map((p) => p.ingresos),
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false, // Permitir que se expanda verticalmente
+          plugins: {
+            legend: { display: true, position: "top" },
+          },
+          scales: {
+            y: { beginAtZero: true },
+          },
+        },
+      });
+    }
+  });
 </script>
 
 <!-- Barra de navegación -->
@@ -21,16 +54,10 @@
     <p><strong>Crecimiento:</strong> {estadisticas.crecimiento}%</p>
   </div>
 
-  <!-- Productos Destacados -->
-  <h2>Productos Más Vendidos</h2>
-  <div class="productos-destacados">
-    {#each productosDestacados as producto}
-      <div class="producto">
-        <h3>{producto.nombre}</h3>
-        <p>Ventas: {producto.ventas}</p>
-        <p>Ingresos: ${producto.ingresos}</p>
-      </div>
-    {/each}
+  <!-- Gráfico de Productos Más Vendidos -->
+  <h2>Ingresos por Producto</h2>
+  <div class="chart-container">
+    <canvas bind:this={chartCanvas}></canvas>
   </div>
 
   <!-- Tabla de Ventas -->
@@ -62,7 +89,7 @@
 <style>
   section {
     padding: 20px;
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
     font-family: Arial, sans-serif;
   }
@@ -78,19 +105,15 @@
     text-align: center;
   }
 
-  /* Estilos de Productos Destacados */
-  .productos-destacados {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 20px;
+  /* Asegurar que el gráfico sea grande */
+  .chart-container {
+    width: 100%;
+    height: 600px; /* Aumentamos el tamaño del gráfico */
   }
 
-  .producto {
-    background: #f8f8f8;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
   }
 
   /* Tabla de Ventas */
