@@ -1,9 +1,10 @@
 <script>
   import NavBar from './../components/NavBar.svelte';
-  import ventasData from "../../data/ventas.json";
+  import ventasData from "../../data/ventas.json"; // Importar JSON directamente
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
 
+  // Asignar los datos del JSON a las variables reactivas
   let ventas = ventasData.ventas;
   let productosDestacados = ventasData.productosDestacados;
   let estadisticas = ventasData.estadisticas;
@@ -28,7 +29,6 @@
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false, // Permitir que se expanda verticalmente
           plugins: {
             legend: { display: true, position: "top" },
           },
@@ -45,23 +45,21 @@
 <NavBar />
 
 <section>
-  <h1>Ventas</h1>
+  <h1>🛒 Ventas</h1>
 
   <!-- Sección de Estadísticas -->
   <div class="estadisticas">
-    <p><strong>Ventas Mensuales:</strong> ${estadisticas.ventasMensuales}</p>
-    <p><strong>Nuevos Clientes:</strong> {estadisticas.nuevosClientes}</p>
-    <p><strong>Crecimiento:</strong> {estadisticas.crecimiento}%</p>
+    <p><strong>📈 Ventas Mensuales:</strong> ${estadisticas.ventasMensuales}</p>
+    <p><strong>🆕 Nuevos Clientes:</strong> {estadisticas.nuevosClientes}</p>
+    <p><strong>🚀 Crecimiento:</strong> {estadisticas.crecimiento}%</p>
   </div>
 
   <!-- Gráfico de Productos Más Vendidos -->
-  <h2>Ingresos por Producto</h2>
-  <div class="chart-container">
-    <canvas bind:this={chartCanvas}></canvas>
-  </div>
+  <h2>📊 Ingresos por Producto</h2>
+  <canvas bind:this={chartCanvas}></canvas>
 
   <!-- Tabla de Ventas -->
-  <h2>Lista de Ventas</h2>
+  <h2>📋 Lista de Ventas</h2>
   <table>
     <thead>
       <tr>
@@ -89,7 +87,7 @@
 <style>
   section {
     padding: 20px;
-    max-width: 1000px;
+    max-width: 900px;
     margin: auto;
     font-family: Arial, sans-serif;
   }
@@ -105,15 +103,10 @@
     text-align: center;
   }
 
-  /* Asegurar que el gráfico sea grande */
-  .chart-container {
-    width: 100%;
-    height: 600px; /* Aumentamos el tamaño del gráfico */
-  }
-
   canvas {
-    width: 100% !important;
-    height: 100% !important;
+    display: block;
+    max-width: 100%;
+    margin: auto;
   }
 
   /* Tabla de Ventas */
