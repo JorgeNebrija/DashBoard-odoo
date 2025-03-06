@@ -1,0 +1,70 @@
+{
+    "productos": [
+      {
+        "id": "1",
+        "nombre": "Laptop Pro X",
+        "categoria": "Electrónicos",
+        "stock": 45,
+        "precio": 1299,
+        "estado": "normal"
+      },
+      {
+        "id": "2",
+        "nombre": "Monitor 4K",
+        "categoria": "Electrónicos",
+        "stock": 8,
+        "precio": 499,
+        "estado": "bajo"
+      },
+      {
+        "id": "3",
+        "nombre": "Teclado Mecánico",
+        "categoria": "Accesorios",
+        "stock": 156,
+        "precio": 129,
+        "estado": "excedente"
+      },
+      {
+        "id": "4",
+        "nombre": "Mouse Inalámbrico",
+        "categoria": "Accesorios",
+        "stock": 78,
+        "precio": 49,
+        "estado": "normal"
+      },
+      {
+        "id": "5",
+        "nombre": "Disco SSD 1TB",
+        "categoria": "Almacenamiento",
+        "stock": 12,
+        "precio": 149,
+        "estado": "bajo"
+      }
+    ],
+    "alertas": [
+      {
+        "id": "1",
+        "tipo": "advertencia",
+        "titulo": "Stock Bajo",
+        "descripcion": "Monitor 4K - 8 unidades restantes"
+      },
+      {
+        "id": "2",
+        "tipo": "información",
+        "titulo": "Pedido en Camino",
+        "descripcion": "Laptop Pro X - 25 unidades"
+      },
+      {
+        "id": "3",
+        "tipo": "éxito",
+        "titulo": "Stock Óptimo",
+        "descripcion": "Teclado Mecánico - 156 unidades"
+      }
+    ],
+    "estadisticas": {
+      "totalProductos": 1234,
+      "stockBajo": 23,
+      "valorTotal": 456000
+    }
+  }
+  

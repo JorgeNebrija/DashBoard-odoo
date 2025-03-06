@@ -1,0 +1,70 @@
+{
+    "ventas": [
+      {
+        "id": "1",
+        "cliente": "Empresa XYZ",
+        "producto": "Software ERP",
+        "fecha": "2024-03-01",
+        "monto": 15000,
+        "estado": "completado"
+      },
+      {
+        "id": "2",
+        "cliente": "Corporación ABC",
+        "producto": "Consultoría",
+        "fecha": "2024-03-02",
+        "monto": 8500,
+        "estado": "pendiente"
+      },
+      {
+        "id": "3",
+        "cliente": "Tech Solutions",
+        "producto": "Licencias",
+        "fecha": "2024-03-03",
+        "monto": 12800,
+        "estado": "completado"
+      },
+      {
+        "id": "4",
+        "cliente": "Global Industries",
+        "producto": "Software ERP",
+        "fecha": "2024-03-04",
+        "monto": 18000,
+        "estado": "completado"
+      },
+      {
+        "id": "5",
+        "cliente": "Startup Inc",
+        "producto": "Consultoría",
+        "fecha": "2024-03-05",
+        "monto": 5000,
+        "estado": "pendiente"
+      }
+    ],
+    "productosDestacados": [
+      {
+        "id": "1",
+        "nombre": "Software ERP",
+        "ventas": 145,
+        "ingresos": 217500
+      },
+      {
+        "id": "2",
+        "nombre": "Consultoría",
+        "ventas": 98,
+        "ingresos": 147000
+      },
+      {
+        "id": "3",
+        "nombre": "Licencias",
+        "ventas": 76,
+        "ingresos": 91200
+      }
+    ],
+    "estadisticas": {
+      "ventasMensuales": 89567,
+      "nuevosClientes": 234,
+      "crecimiento": 24
+    }
+  }
+  

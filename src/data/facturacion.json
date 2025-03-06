@@ -1,0 +1,50 @@
+{
+    "facturas": [
+      {
+        "id": "FAC-2024-001",
+        "cliente": "Empresa ABC",
+        "fecha": "2024-03-01",
+        "monto": 5000,
+        "estado": "pagada"
+      },
+      {
+        "id": "FAC-2024-002",
+        "cliente": "Corporación XYZ",
+        "fecha": "2024-03-02",
+        "monto": 3500,
+        "estado": "pendiente"
+      },
+      {
+        "id": "FAC-2024-003",
+        "cliente": "Industrias 123",
+        "fecha": "2024-03-03",
+        "monto": 7800,
+        "estado": "vencida"
+      },
+      {
+        "id": "FAC-2024-004",
+        "cliente": "Tech Solutions",
+        "fecha": "2024-03-04",
+        "monto": 4200,
+        "estado": "pagada"
+      },
+      {
+        "id": "FAC-2024-005",
+        "cliente": "Global Industries",
+        "fecha": "2024-03-05",
+        "monto": 6500,
+        "estado": "pendiente"
+      }
+    ],
+    "pagos": {
+      "recibidos": 45678,
+      "pendientes": 12345,
+      "vencidos": 7890
+    },
+    "estadisticas": {
+      "facturasEmitidas": 145,
+      "cuentasPorCobrar": 67890,
+      "tasaRecaudacion": 98
+    }
+  }
+  

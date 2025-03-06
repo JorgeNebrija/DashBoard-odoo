@@ -1,0 +1,29 @@
+{
+    "usuarios": [
+      {
+        "id": "1",
+        "correo": "admin@example.com",
+        "contrasena": "admin",
+        "rol": "administrador",
+        "nombre": "Administrador",
+        "fechaCreacion": "2024-01-01T00:00:00.000Z"
+      },
+      {
+        "id": "2",
+        "correo": "user@example.com",
+        "contrasena": "user",
+        "rol": "estandar",
+        "nombre": "Usuario Estándar",
+        "fechaCreacion": "2024-01-02T00:00:00.000Z"
+      },
+      {
+        "id": "3",
+        "correo": "guest@example.com",
+        "contrasena": "guest",
+        "rol": "invitado",
+        "nombre": "Usuario Invitado",
+        "fechaCreacion": "2024-01-03T00:00:00.000Z"
+      }
+    ]
+  }
+  
