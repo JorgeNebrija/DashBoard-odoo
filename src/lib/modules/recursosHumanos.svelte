@@ -1,6 +1,7 @@
 <script>
-  import NavBar from './../components/NavBar.svelte';
+  import NavBar from "./../components/NavBar.svelte";
   import recursosHumanos from "../../data/recursosHumanos.json"; // Importar JSON directamente
+  import SideBar from "../components/SideBar.svelte";
 
   // Asignar los datos del JSON a las variables reactivas
   let empleados = recursosHumanos.empleados;
@@ -8,79 +9,101 @@
   let estadisticas = recursosHumanos.estadisticas;
 </script>
 
-<!-- Barra de navegación -->
-<NavBar />
+<section class="container">
+  <SideBar />
 
-<section>
-  <h1>Recursos Humanos</h1>
+  <section class="content">
+    <NavBar />
 
-  <!-- Sección de Estadísticas -->
-  <div class="estadisticas">
-    <p><strong>Empleados Activos:</strong> {estadisticas.empleadosActivos}</p>
-    <p><strong>Asistencia General:</strong> {estadisticas.asistencia}%</p>
-    <p><strong>Evaluaciones Pendientes:</strong> {estadisticas.evaluacionesPendientes}</p>
-  </div>
+    <section class="rrhh">
+      <h1>Recursos Humanos</h1>
 
-  <!-- Sección de Eventos -->
-  <h2>Próximos Eventos</h2>
-  <div class="eventos">
-    {#each eventos as evento}
-      <div class="evento">
-        <div class="fecha">
-          <span class="dia">{evento.dia}</span>
-          <span class="mes">{evento.mes}</span>
-        </div>
-        <div class="info">
-          <h3>{evento.titulo}</h3>
-          <p>{evento.descripcion}</p>
-        </div>
+      <!-- Sección de Estadísticas -->
+      <div class="estadisticas">
+        <p>
+          <strong>Empleados Activos:</strong>
+          {estadisticas.empleadosActivos}
+        </p>
+        <p><strong>Asistencia General:</strong> {estadisticas.asistencia}%</p>
+        <p>
+          <strong>Evaluaciones Pendientes:</strong>
+          {estadisticas.evaluacionesPendientes}
+        </p>
       </div>
-    {/each}
-  </div>
 
-  <!-- Tabla de Empleados -->
-  <h2>Lista de Empleados</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Departamento</th>
-        <th>Puesto</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each empleados as empleado}
-        <tr class={empleado.estado}>
-          <td>{empleado.id}</td>
-          <td>{empleado.nombre}</td>
-          <td>{empleado.departamento}</td>
-          <td>{empleado.puesto}</td>
-          <td class={empleado.estado}>{empleado.estado}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+      <!-- Sección de Eventos -->
+      <h2>Próximos Eventos</h2>
+      <div class="eventos">
+        {#each eventos as evento}
+          <div class="evento">
+            <div class="fecha">
+              <span class="dia">{evento.dia}</span>
+              <span class="mes">{evento.mes}</span>
+            </div>
+            <div class="info">
+              <h3>{evento.titulo}</h3>
+              <p>{evento.descripcion}</p>
+            </div>
+          </div>
+        {/each}
+      </div>
+
+      <!-- Tabla de Empleados -->
+      <h2>Lista de Empleados</h2>
+      <table>
+        <thead>
+          <tr class="encabezado-tabla">
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Puesto</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each empleados as empleado}
+            <tr class={empleado.estado}>
+              <td>{empleado.id}</td>
+              <td>{empleado.nombre}</td>
+              <td>{empleado.departamento}</td>
+              <td>{empleado.puesto}</td>
+              <td class={empleado.estado}>{empleado.estado}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </section>
+  </section>
 </section>
 
 <style>
-  section {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    font-family: Arial, sans-serif;
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+  .rrhh {
+    padding: 50px;
+    overflow-y: scroll;
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f4f4f4;
   }
 
   .estadisticas {
-    background: #f4f4f4;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin-top: 10px;
+    color: black;
+    margin-bottom: 50px;
   }
-
-  h1, h2 {
-    text-align: center;
+  .estadisticas p,
+  .estadisticas strong {
+    color: black;
   }
 
   /* Estilos de Eventos */
@@ -88,16 +111,27 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 10px;
     margin-bottom: 20px;
+    margin-bottom: 50px;
   }
 
   .evento {
     display: flex;
     align-items: center;
-    background: #f8f8f8;
+    background: white;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .evento .fecha .dia,
+  .evento .fecha .mes {
+    color: white;
+  }
+
+  .evento .info h3,
+  .evento .info p {
+    color: black;
   }
 
   .fecha {
@@ -130,15 +164,17 @@
     margin-top: 15px;
   }
 
-  th, td {
+  .encabezado-tabla th {
+    color: black;
+    background-color: lightgrey;
+  }
+
+  th,
+  td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
-  }
-
-  th {
-    background: #333;
-    color: white;
+    color: black;
   }
 
   .activo {

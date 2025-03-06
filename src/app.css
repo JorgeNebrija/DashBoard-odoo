@@ -2,9 +2,18 @@
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #012B66 ;
+  color: #012B66;
 }
 
 body {
   background-color: #eeee;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h1,
+h2 {
+  text-align: left;
 }

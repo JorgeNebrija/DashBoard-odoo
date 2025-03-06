@@ -1,8 +1,9 @@
 <script>
-  import NavBar from './../components/NavBar.svelte';
+  import NavBar from "./../components/NavBar.svelte";
   import ventasData from "../../data/ventas.json"; // Importar JSON directamente
   import { onMount } from "svelte";
   import Chart from "chart.js/auto";
+  import SideBar from "../components/SideBar.svelte";
 
   // Asignar los datos del JSON a las variables reactivas
   let ventas = ventasData.ventas;
@@ -21,8 +22,8 @@
             {
               label: "Ingresos Generados ($)",
               data: productosDestacados.map((p) => p.ingresos),
-              backgroundColor: "rgba(75, 192, 192, 0.6)",
-              borderColor: "rgba(75, 192, 192, 1)",
+              backgroundColor: "#2563eb",
+              borderColor: "transparent",
               borderWidth: 1,
             },
           ],
@@ -42,71 +43,118 @@
 </script>
 
 <!-- Barra de navegación -->
-<NavBar />
 
-<section>
-  <h1>🛒 Ventas</h1>
+<section class="container">
+  <SideBar />
 
-  <!-- Sección de Estadísticas -->
-  <div class="estadisticas">
-    <p><strong>📈 Ventas Mensuales:</strong> ${estadisticas.ventasMensuales}</p>
-    <p><strong>🆕 Nuevos Clientes:</strong> {estadisticas.nuevosClientes}</p>
-    <p><strong>🚀 Crecimiento:</strong> {estadisticas.crecimiento}%</p>
-  </div>
+  <section class="content">
+    <NavBar />
 
-  <!-- Gráfico de Productos Más Vendidos -->
-  <h2>📊 Ingresos por Producto</h2>
-  <canvas bind:this={chartCanvas}></canvas>
+    <section class="ventas">
+      <h1>Ventas</h1>
 
-  <!-- Tabla de Ventas -->
-  <h2>📋 Lista de Ventas</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Cliente</th>
-        <th>Producto</th>
-        <th>Monto</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each ventas as venta}
-        <tr class={venta.estado}>
-          <td>{venta.fecha}</td>
-          <td>{venta.cliente}</td>
-          <td>{venta.producto}</td>
-          <td>${venta.monto}</td>
-          <td class={venta.estado}>{venta.estado}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+      <!-- Sección de Estadísticas -->
+      <div class="estadisticas">
+        <p>
+          <strong>Ventas Mensuales:</strong>
+          {estadisticas.ventasMensuales}€
+        </p>
+        <p><strong>Nuevos Clientes:</strong> {estadisticas.nuevosClientes}</p>
+        <p><strong>Crecimiento:</strong> {estadisticas.crecimiento}%</p>
+      </div>
+
+      <!-- Gráfico de Productos Más Vendidos -->
+      <h2>Ingresos por Producto</h2>
+      <div class="contenedor-grafico">
+        <canvas bind:this={chartCanvas}></canvas>
+      </div>
+
+      <!-- Tabla de Ventas -->
+      <h2>Lista de Ventas</h2>
+      <table>
+        <thead>
+          <tr class="encabezado-tabla">
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Producto</th>
+            <th>Monto</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each ventas as venta}
+            <tr class={venta.estado}>
+              <td>{venta.fecha}</td>
+              <td>{venta.cliente}</td>
+              <td>{venta.producto}</td>
+              <td>${venta.monto}</td>
+              <td class={venta.estado}>{venta.estado}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </section>
+  </section>
 </section>
 
 <style>
-  section {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    font-family: Arial, sans-serif;
+  .container {
+    display: flex;
+    height: 100vh;
   }
 
   .estadisticas {
-    background: #f4f4f4;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    color: black;
   }
 
-  h1, h2 {
-    text-align: center;
+  .estadisticas p,
+  .estadisticas strong {
+    color: black;
+  }
+
+  .ventas {
+    padding: 50px;
+    overflow-y: scroll;
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f4f4f4;
+  }
+
+  .encabezado-tabla th {
+    background-color: lightgray;
+    color: black;
+  }
+
+  table {
+    border-radius: 0.5rem;
+  }
+
+  .contenedor-grafico {
+    padding: 20px;
+    display: flex;
+    justify-content: left;
+    height: 300px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+
+  h1,
+  h2 {
+    text-align: left;
   }
 
   canvas {
     display: block;
     max-width: 100%;
-    margin: auto;
   }
 
   /* Tabla de Ventas */
@@ -116,15 +164,12 @@
     margin-top: 15px;
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
-  }
-
-  th {
-    background: #333;
-    color: white;
+    color: black;
   }
 
   .completado {
