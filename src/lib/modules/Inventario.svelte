@@ -111,15 +111,15 @@
   }
 
   .advertencia {
-    background-color: orange;
+    background-color:white;
   }
 
   .información {
-    background-color: blue;
+    background-color: white;
   }
 
   .éxito {
-    background-color: green;
+    background-color: white; 
   }
 
   /* Tabla de Productos */
