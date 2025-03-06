@@ -1,5 +1,7 @@
 <script>
     import { onMount } from "svelte";
+    import NavBar from './../components/NavBar.svelte';
+
     let empleados = [];
     let error = "";
   
