@@ -1,68 +1,102 @@
 {
-    "empleados": [
-      {
-        "id": "1",
-        "nombre": "Ana Martínez",
-        "departamento": "Desarrollo",
-        "puesto": "Desarrollador Senior",
-        "estado": "activo"
-      },
-      {
-        "id": "2",
-        "nombre": "Carlos López",
-        "departamento": "Diseño",
-        "puesto": "Diseñador UI/UX",
-        "estado": "vacaciones"
-      },
-      {
-        "id": "3",
-        "nombre": "María García",
-        "departamento": "Marketing",
-        "puesto": "Gerente de Marketing",
-        "estado": "activo"
-      },
-      {
-        "id": "4",
-        "nombre": "Juan Rodríguez",
-        "departamento": "Ventas",
-        "puesto": "Ejecutivo de Ventas",
-        "estado": "activo"
-      },
-      {
-        "id": "5",
-        "nombre": "Laura Sánchez",
-        "departamento": "Finanzas",
-        "puesto": "Analista Financiero",
-        "estado": "activo"
-      }
-    ],
-    "eventos": [
-      {
-        "id": "1",
-        "titulo": "Evaluación de Desempeño",
-        "descripcion": "Departamento de Desarrollo",
-        "dia": 15,
-        "mes": "MAR"
-      },
-      {
-        "id": "2",
-        "titulo": "Capacitación",
-        "descripcion": "Nuevas Tecnologías",
-        "dia": 22,
-        "mes": "MAR"
-      },
-      {
-        "id": "3",
-        "titulo": "Reunión de Equipo",
-        "descripcion": "Todos los departamentos",
-        "dia": 28,
-        "mes": "MAR"
-      }
-    ],
-    "estadisticas": {
-      "empleadosActivos": 156,
-      "asistencia": 92,
-      "evaluacionesPendientes": 15
+  "empleados": [
+    {
+      "id": "1",
+      "nombre": "Ana Martínez",
+      "departamento": "Desarrollo",
+      "puesto": "Desarrollador Senior",
+      "estado": "activo"
+    },
+    {
+      "id": "2",
+      "nombre": "Carlos López",
+      "departamento": "Diseño",
+      "puesto": "Diseñador UI/UX",
+      "estado": "vacaciones"
+    },
+    {
+      "id": "3",
+      "nombre": "María García",
+      "departamento": "Marketing",
+      "puesto": "Gerente de Marketing",
+      "estado": "activo"
+    },
+    {
+      "id": "4",
+      "nombre": "Juan Rodríguez",
+      "departamento": "Ventas",
+      "puesto": "Ejecutivo de Ventas",
+      "estado": "activo"
+    },
+    {
+      "id": "5",
+      "nombre": "Laura Sánchez",
+      "departamento": "Finanzas",
+      "puesto": "Analista Financiero",
+      "estado": "activo"
     }
+  ],
+  "eventos": [
+    {
+      "id": "1",
+      "titulo": "Evaluación de Desempeño",
+      "descripcion": "Departamento de Desarrollo",
+      "dia": 15,
+      "mes": "MAR"
+    },
+    {
+      "id": "2",
+      "titulo": "Capacitación",
+      "descripcion": "Nuevas Tecnologías",
+      "dia": 22,
+      "mes": "MAR"
+    },
+    {
+      "id": "3",
+      "titulo": "Reunión de Equipo",
+      "descripcion": "Todos los departamentos",
+      "dia": 28,
+      "mes": "MAR"
+    },
+    {
+      "id": "4",
+      "titulo": "Onboarding de Nuevos Empleados",
+      "descripcion": "Presentación de la empresa y políticas",
+      "dia": 5,
+      "mes": "ABR"
+    },
+    {
+      "id": "5",
+      "titulo": "Revisión de Proyectos",
+      "descripcion": "Análisis de proyectos en curso",
+      "dia": 12,
+      "mes": "ABR"
+    },
+    {
+      "id": "6",
+      "titulo": "Workshop de Creatividad",
+      "descripcion": "Departamento de Diseño",
+      "dia": 20,
+      "mes": "ABR"
+    },
+    {
+      "id": "7",
+      "titulo": "Actualización Financiera",
+      "descripcion": "Revisión del presupuesto trimestral",
+      "dia": 27,
+      "mes": "ABR"
+    },
+    {
+      "id": "8",
+      "titulo": "Cierre de Mes",
+      "descripcion": "Informe general de desempeño",
+      "dia": 30,
+      "mes": "ABR"
+    }
+  ],
+  "estadisticas": {
+    "empleadosActivos": 156,
+    "asistencia": 92,
+    "evaluacionesPendientes": 15
   }
-  
+}
