@@ -1,52 +1,47 @@
 <script>
-    import { navigate } from 'svelte-routing';
-  
-    function volverAInicio() {
-      navigate('/');
-    }
-  </script>
-  
-  <nav class="barra-navegacion">
-    <button class="boton-volver" on:click={volverAInicio}>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 12H5"></path>
-        <path d="M12 19l-7-7 7-7"></path>
-      </svg>
-      <span>Volver al inicio</span>
-    </button>
-  </nav>
-  
+  import { push } from 'svelte-spa-router';
+
+  function volverAInicio() {
+    push('/inicio'); // Usamos push de svelte-spa-router para navegar
+  }
+
+  function logout() {
+    push('/'); // Redirige al login o página de inicio
+  }
+</script>
+
+  <div class="header">
+    <input class="search" type="text" placeholder="Buscar..." />
+    <button class="logout-button" on:click={logout}>Cerrar sesión</button>  
+  </div>
   <style>
-    .barra-navegacion {
-      background-color: var(--color-fondo);
-      border-bottom: 1px solid var(--color-borde);
-      padding: 1rem 2rem;
-    }
+  .header {
+    background: white;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+  }
   
-    .boton-volver {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: none;
-      border: none;
-      color: var(--color-texto);
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 0.375rem;
-      transition: all 0.2s;
-    }
+  .search {
+    padding: 8px;
+    width: 200px;
+  }
+  .logout-button {
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+   
+  }
   
-    .boton-volver:hover {
-      background-color: var(--color-borde);
-    }
-  
-    .boton-volver span {
-      font-weight: 500;
-    }
-  
-    .boton-volver svg {
-      width: 20px;
-      height: 20px;
-    }
-  </style>
-  
+  .logout-button:hover {
+    background-color: darkred;
+  }
+</style>
