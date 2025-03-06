@@ -9,4 +9,5 @@
   <Route path="/inicio" component={Inicio} />
 </Router>
 
-<style></style>
+<style>
+</style>
