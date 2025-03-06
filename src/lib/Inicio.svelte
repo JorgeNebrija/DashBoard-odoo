@@ -2,11 +2,8 @@
   import { push } from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
-  import { modules } from "../modules";
+  import { modules, irA } from "../modules";
 
-  function irA(ruta) {
-    push(ruta);
-  }
 
 </script>
 
@@ -17,7 +14,7 @@
     <NavBar />
     <div class="grid">
       {#each modules as module}
-        <div class="module" on:click={irA(module.ruta)}>
+        <div class="module" on:click={()=>irA(module.ruta)}>
           {module.icon}<br />{module.name}
         </div>
       {/each}
