@@ -141,7 +141,7 @@
     font-size: 0.875rem;
     background-color: white;
     padding: 30px;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
   }
 
   .demo-credentials p {
