@@ -1,38 +1,20 @@
 <script>
+  import { navigate } from "svelte-routing";
+
+  import usuariosJSON from "../data/usuarios.json";
+
   let email = "";
   let password = "";
   let error = "";
-  //   // Importamos la función `navigate` para redirigir a otras páginas
-  //   import { navigate } from 'svelte-routing';
 
-  //   // Importamos el store de autenticación
-  //   import { auth } from '../lib/stores/auth';
-
-  //   // Importamos la función para autenticar usuarios
-  //   import { authenticateUser } from '../lib/services/dataService';
-
-  //   // Variables para almacenar los datos del formulario
-  //
-
-  //   // Manejo del envío del formulario
-  //   async function handleSubmit() {
-  //     try {
-  //       // Verificamos si las credenciales son correctas
-  //       const user = authenticateUser(email, password);
-
-  //       if (user) {
-  //         // Si el usuario es válido, guardamos los datos en el store y redirigimos al inicio
-  //         auth.setUser(user);
-  //         navigate('/', { replace: true });
-  //       } else {
-  //         // Si las credenciales son incorrectas, mostramos un mensaje de error
-  //         error = 'Credenciales inválidas';
-  //       }
-  //     } catch (e) {
-  //       // Capturamos cualquier error inesperado
-  //       error = 'Error al iniciar sesión';
-  //     }
-  //   }
+  function validarDatos() {
+    if (
+      email === usuariosJSON.usuarios[0].correo &&
+      password === usuariosJSON.usuarios[0].contrasena
+    ) {
+      navigate("/inicio");
+    }
+  }
 </script>
 
 <!-- Contenedor del formulario de inicio de sesión -->
@@ -40,7 +22,7 @@
   <div class="login-card">
     <h1>Iniciar Sesión</h1>
 
-    <form>
+    <form class="formulario" on:submit|preventDefault={validarDatos}>
       <div class="form-group">
         <label for="email">Correo electrónico</label>
         <input
@@ -68,7 +50,7 @@
         <div class="error">{error}</div>
       {/if}
 
-      <button type="submit" class="btn btn-primary"> Iniciar Sesión </button>
+      <button type="submit" class="boton"> Iniciar Sesión </button>
     </form>
 
     <!-- Información sobre credenciales de prueba -->
@@ -89,13 +71,29 @@
     background-color: var(--color-background);
   }
 
-  .login-card {
-    background-color: var(--color-background);
-    padding: 2rem;
+  .boton {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 150px;
     border-radius: 0.5rem;
-    box-shadow: var(--shadow-lg);
-    width: 100%;
-    max-width: 400px;
+  }
+
+  .formulario {
+    padding: 30px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.5rem;
+    width: 300px;
+  }
+
+  .boton:hover {
+    background-color: #1a53ce;
   }
 
   h1 {
@@ -115,12 +113,10 @@
   }
 
   input {
-    width: 100%;
+    width: 250px;
+    border: 1px #ccc solid;
     padding: 0.5rem;
-    border: 1px solid var(--color-border);
     border-radius: 0.25rem;
-    background-color: var(--color-background);
-    color: var(--color-text);
   }
 
   input:focus {
@@ -142,9 +138,10 @@
   .demo-credentials {
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid var(--color-border);
     font-size: 0.875rem;
-    color: var(--color-text);
+    background-color: white;
+    padding: 30px;
+    border-radius: 0.25rem;
   }
 
   .demo-credentials p {
@@ -154,7 +151,7 @@
   code {
     display: block;
     padding: 0.5rem;
-    background-color: var(--color-border);
+    background-color: #eaeaea;
     border-radius: 0.25rem;
     margin-bottom: 0.5rem;
     font-family: monospace;
