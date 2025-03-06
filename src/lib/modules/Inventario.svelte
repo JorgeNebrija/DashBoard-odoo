@@ -1,81 +1,98 @@
 <script>
-  import NavBar from './../components/NavBar.svelte';
+  import NavBar from "./../components/NavBar.svelte";
   import inventario from "../../data/inventario.json"; // Importar JSON directamente
+  import SideBar from "../components/SideBar.svelte";
 
   // Asignar los datos del JSON a las variables reactivas
-  let inventarioData = inventario;
   let productos = inventario.productos;
   let alertas = inventario.alertas;
   let estadisticas = inventario.estadisticas;
 </script>
 
-<!-- Barra de navegación -->
-<NavBar />
+<section class="container">
+  <SideBar  />
 
-<section>
-  <h1>Inventario</h1>
+  <section class="content">
+    <NavBar  />
 
-  <!-- Sección de Estadísticas -->
-  <div class="estadisticas">
-    <p><strong>Total de Productos:</strong> {estadisticas.totalProductos}</p>
-    <p><strong>Stock Bajo:</strong> {estadisticas.stockBajo}</p>
-    <p><strong>Valor Total:</strong> ${estadisticas.valorTotal}</p>
-  </div>
+    <section class="inventario">
+      <h1>Inventario</h1>
 
-  <!-- Sección de Alertas -->
-  <h2>Alertas</h2>
-  <div class="alertas">
-    {#each alertas as alerta}
-      <div class="alerta {alerta.tipo}">
-        <h3>{alerta.titulo}</h3>
-        <p>{alerta.descripcion}</p>
+      <!-- Sección de Estadísticas -->
+      <div class="estadisticas">
+        <p><strong>Total de Productos:</strong> {estadisticas.totalProductos}</p>
+        <p><strong>Stock Bajo:</strong> {estadisticas.stockBajo}</p>
+        <p><strong>Valor Total:</strong> ${estadisticas.valorTotal}</p>
       </div>
-    {/each}
-  </div>
 
-  <!-- Tabla de Productos -->
-  <h2>Lista de Productos</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Categoría</th>
-        <th>Stock</th>
-        <th>Precio</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each productos as producto}
-        <tr class={producto.estado}>
-          <td>{producto.nombre}</td>
-          <td>{producto.categoria}</td>
-          <td>{producto.stock}</td>
-          <td>${producto.precio}</td>
-          <td class={producto.estado}>{producto.estado}</td>
-        </tr>
-      {/each}
-    </tbody>
-  </table>
+      <!-- Sección de Alertas -->
+      <h2>Alertas</h2>
+      <div class="alertas">
+        {#each alertas as alerta}
+          <div class="alerta {alerta.tipo}">
+            <h3>{alerta.titulo}</h3>
+            <p>{alerta.descripcion}</p>
+          </div>
+        {/each}
+      </div>
+
+      <!-- Tabla de Productos -->
+      <h2>Lista de Productos</h2>
+      <table>
+        <thead>
+          <tr class="encabezado-tabla">
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Stock</th>
+            <th>Precio</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {#each productos as producto}
+            <tr class={producto.estado}>
+              <td>{producto.nombre}</td>
+              <td>{producto.categoria}</td>
+              <td>{producto.stock}</td>
+              <td>${producto.precio}</td>
+              <td class={producto.estado}>{producto.estado}</td>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </section>
+  </section>
 </section>
 
 <style>
-  section {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    font-family: Arial, sans-serif;
+  .container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .inventario {
+    padding: 50px;
+    overflow-y: scroll;
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f4f4f4;
   }
 
   .estadisticas {
-    background: #f4f4f4;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin-top: 10px;
+    color: black;
+    margin-bottom: 50px;
   }
-
-  h1, h2 {
-    text-align: center;
+  .estadisticas p,
+  .estadisticas strong {
+    color: black;
   }
 
   /* Estilos de Alertas */
@@ -83,6 +100,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 50px;
   }
 
   .alerta {
@@ -108,17 +127,20 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    background: white;
   }
 
-  th, td {
+  .encabezado-tabla th {
+    color: black;
+    background-color: lightgrey;
+  }
+
+  th,
+  td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
-  }
-
-  th {
-    background: #333;
-    color: white;
+    color: black;
   }
 
   .normal {
