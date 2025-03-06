@@ -1,7 +1,7 @@
 export let modules = [
-    { name: "Compras", icon: "🛒" },
-    { name: "Contabilidad", icon: "📑" },
-    { name: "Finanzas", icon: "💰" },
-    { name: "Inventario", icon: "📦" },
-    { name: "Ventas", icon: "📊" }
+    { name: "Recursos Humanos", icon: "🛒" , ruta: "/rrhh"},
+    { name: "Facturación", icon: "📑", ruta: "/facturacion"},
+    { name: "Finanzas", icon: "💰", ruta: "/finanzas" },
+    { name: "Inventario", icon: "📦", ruta: "/inventario" },
+    { name: "Ventas", icon: "📊", ruta: "/ventas"}
   ];
