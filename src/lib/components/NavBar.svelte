@@ -1,35 +1,35 @@
 <script>
-  import { push } from 'svelte-spa-router';
-  import { modules, irA } from '../../modules'; // Importamos los módulos y la función de navegación
-  import { onMount } from 'svelte';
+  import { push } from "svelte-spa-router";
+  import { modules, irA } from "../../modules"; // Importamos los módulos y la función de navegación
+  import { onMount } from "svelte";
 
-  let searchQuery = '';  // Variable reactiva para almacenar el texto de búsqueda
+  let searchQuery = ""; // Variable reactiva para almacenar el texto de búsqueda
   let filteredModules = [...modules]; // Inicialmente, mostramos todos los módulos
 
   // Función para filtrar módulos según la búsqueda
   function buscarModulo() {
-    if (searchQuery.trim() === '') {
+    if (searchQuery.trim() === "") {
       filteredModules = [...modules]; // Si el campo está vacío, mostramos todos
     } else {
-      filteredModules = modules.filter(modulo => 
+      filteredModules = modules.filter((modulo) =>
         modulo.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
   }
 
   function logout() {
-    push('/'); // Redirige al login o página de inicio
+    push("/"); // Redirige al login o página de inicio
   }
 </script>
 
 <div class="header">
   <div class="search-container">
-    <input 
-      class="search" 
-      type="text" 
-      placeholder="Buscar módulos..." 
-      bind:value={searchQuery} 
-      on:input={buscarModulo} 
+    <input
+      class="search"
+      type="text"
+      placeholder="Buscar módulos..."
+      bind:value={searchQuery}
+      on:input={buscarModulo}
     />
 
     <!-- Resultados de búsqueda -->
@@ -45,7 +45,7 @@
     {/if}
   </div>
 
-  <button class="logout-button" on:click={logout}>Cerrar sesión</button>  
+  <button class="logout-button" on:click={logout}>Cerrar sesión</button>
 </div>
 
 <style>
@@ -118,5 +118,15 @@
 
   .logout-button:hover {
     background-color: #1c52c5;
+  }
+
+  @media (max-width: 800px) {
+    .header {
+      padding: 20px;
+    }
+
+    .search {
+      width: 100px;
+    }
   }
 </style>

@@ -5,7 +5,7 @@
   import Facturacion from "./lib/modules/Facturacion.svelte";
   import Finanzas from "./lib/modules/Finanzas.svelte";
   import Inventario from "./lib/modules/Inventario.svelte";
-  import RecursosHumanos from "./lib/modules/recursosHumanos.svelte";
+  import RecursosHumanos from "./lib/modules/RecursosHumanos.svelte";
   import Ventas from "./lib/modules/Ventas.svelte";
 
   const routes = {

@@ -108,4 +108,15 @@
     background-color: white;
     transform: scale(1.05);
   }
+
+  @media (max-width: 800px) {
+    .grid {
+      padding: 20px;
+      gap: 30px;
+    }
+    .module {
+      height: 100px;
+      width: 25%;
+    }
+  }
 </style>

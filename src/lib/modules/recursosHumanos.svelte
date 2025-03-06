@@ -1,12 +1,41 @@
 <script>
-  import NavBar from "./../components/NavBar.svelte";
+  import NavBar from "../components/NavBar.svelte";
   import recursosHumanos from "../../data/recursosHumanos.json"; // Importar JSON directamente
   import SideBar from "../components/SideBar.svelte";
+  
+  import Sortable from "sortablejs";
+  import { onMount } from "svelte";
 
   // Asignar los datos del JSON a las variables reactivas
   let empleados = recursosHumanos.empleados;
   let eventos = recursosHumanos.eventos;
   let estadisticas = recursosHumanos.estadisticas;
+
+  let eventosArray = eventos;
+
+  let listElement;
+
+  const clave_sesion = "orden_eventos";
+
+  // Si hay datos guardados, los cargamos
+  if (sessionStorage.getItem(clave_sesion)) {
+    const orden = JSON.parse(sessionStorage.getItem(clave_sesion));
+    eventosArray = orden;
+  }
+
+  onMount(() => {
+    Sortable.create(listElement, {
+      animation: 200,
+      ghostClass: "sortable-ghost", // Clase que se aplica al ítem fantasma
+      chosenClass: "sortable-chosen", // Clase mientras arrastras
+      dragClass: "sortable-drag", // Clase opcional para más control
+      onEnd: (evt) => {
+        const [movedItem] = eventosArray.splice(evt.oldIndex, 1);
+       eventosArray.splice(evt.newIndex, 0, movedItem);
+        sessionStorage.setItem(clave_sesion, JSON.stringify(eventosArray));
+      },
+    });
+  });
 </script>
 
 <section class="container">
@@ -33,7 +62,7 @@
 
       <!-- Sección de Eventos -->
       <h2>Próximos Eventos</h2>
-      <div class="eventos">
+      <div class="eventos" bind:this={listElement}>
         {#each eventos as evento}
           <div class="evento">
             <div class="fecha">
@@ -122,6 +151,7 @@
     background: white;
     padding: 10px;
     border-radius: 8px;
+cursor: grab;
   }
 
   .evento .fecha .dia,
@@ -183,5 +213,15 @@
 
   .vacaciones {
     color: orange;
+  }
+
+  .sortable-ghost {
+    opacity: 1;
+    background-color: #f9f9f9;
+  }
+
+  .sortable-chosen {
+    background-color: #e0e0e0;
+    transform: scale(1.02);
   }
 </style>
