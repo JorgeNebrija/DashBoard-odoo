@@ -8,16 +8,18 @@
   import Inventario from "./lib/modules/Inventario.svelte";
   import RecursosHumanos from "./lib/modules/RecursosHumanos.svelte";
   import Ventas from "./lib/modules/Ventas.svelte";
+  import Fabricacion from "./lib/modules/Fabricacion.svelte";
 
   const routes = {
     "/": Login,
     "/registro": Registro,
-    "/inicio": Inicio,  
+    "/inicio": Inicio,
     "/facturacion": Facturacion,
     "/finanzas": Finanzas,
     "/inventario": Inventario,
     "/rrhh": RecursosHumanos,
     "/ventas": Ventas,
+    "/fabricacion": Fabricacion,
   };
 </script>
 

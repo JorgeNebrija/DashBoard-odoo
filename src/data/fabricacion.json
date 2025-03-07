@@ -1,0 +1,55 @@
+{
+    "ordenesProduccion": [
+      {
+        "id": "OP-2024-001",
+        "producto": "Mesa de Madera",
+        "fechaInicio": "2024-03-01",
+        "fechaFin": "2024-03-05",
+        "cantidad": 20,
+        "estado": "finalizada"
+      },
+      {
+        "id": "OP-2024-002",
+        "producto": "Silla de Oficina",
+        "fechaInicio": "2024-03-03",
+        "fechaFin": null,
+        "cantidad": 50,
+        "estado": "en proceso"
+      },
+      {
+        "id": "OP-2024-003",
+        "producto": "Estante Metálico",
+        "fechaInicio": "2024-03-05",
+        "fechaFin": null,
+        "cantidad": 15,
+        "estado": "pendiente"
+      }
+    ],
+    "materialesConsumidos": [
+      {
+        "ordenId": "OP-2024-001",
+        "material": "Madera Roble",
+        "cantidadUsada": 100,
+        "unidad": "metros"
+      },
+      {
+        "ordenId": "OP-2024-001",
+        "material": "Barniz",
+        "cantidadUsada": 5,
+        "unidad": "litros"
+      },
+      {
+        "ordenId": "OP-2024-002",
+        "material": "Tornillos",
+        "cantidadUsada": 300,
+        "unidad": "unidades"
+      }
+    ],
+    "estadisticas": {
+      "ordenesTotales": 120,
+      "ordenesFinalizadas": 95,
+      "productosFabricados": 4300,
+      "costoTotalProduccion": 152000
+    }
+  }
+  

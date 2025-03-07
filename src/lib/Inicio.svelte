@@ -40,6 +40,7 @@
       onEnd: (evt) => {
         const [movedItem] = modulosFiltrados.splice(evt.oldIndex, 1);
         modulosFiltrados.splice(evt.newIndex, 0, movedItem);
+
         sessionStorage.setItem(clave_sesion, JSON.stringify(modulosFiltrados));
       },
     });
@@ -52,7 +53,7 @@
   <div class="content">
     <NavBar />
     <div class="grid" bind:this={listElement}>
-      {#each modulosFiltrados.slice(1,6) as modulo}
+      {#each modulosFiltrados.slice(1, 7) as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
           <img
             src={`${modulo.icono}`}
@@ -82,10 +83,10 @@
   .grid {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
     align-items: center;
-    gap: 20px;
+    gap: 30px;
     padding: 50px;
   }
 

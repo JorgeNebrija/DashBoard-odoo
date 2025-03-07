@@ -3,17 +3,39 @@ import { push } from "svelte-spa-router";
 // Lista de módulos disponibles
 export const modulos = {
   admin: [
-    {nombre: "Inicio", ruta:"/inicio", icono:"/icons/inicio.png"},
-    { nombre: "Facturación", ruta: "/facturacion", icono: "/icons/facturacion.png" },
+    { nombre: "Inicio", ruta: "/inicio", icono: "/icons/inicio.png" },
+    {
+      nombre: "Facturación",
+      ruta: "/facturacion",
+      icono: "/icons/facturacion.png",
+    },
     { nombre: "Finanzas", ruta: "/finanzas", icono: "/icons/finanzas.png" },
     { nombre: "Recursos Humanos", ruta: "/rrhh", icono: "/icons/rrhh.png" },
     { nombre: "Ventas", ruta: "/ventas", icono: "/icons/ventas.png" },
-    { nombre: "Inventario", ruta: "/inventario", icono: "/icons/inventario.png" },
+    {
+      nombre: "Inventario",
+      ruta: "/inventario",
+      icono: "/icons/inventario.png",
+    },
+    {
+      nombre: "Fabricación",
+      ruta: "/fabricacion",
+      icono: "/icons/fabricacion.png",
+    },
   ],
   empleado: [
-    {nombre: "Inicio", ruta:"/inicio", icono:"/icons/inicio.png"},
+    { nombre: "Inicio", ruta: "/inicio", icono: "/icons/inicio.png" },
     { nombre: "Ventas", ruta: "/ventas", icono: "/icons/ventas.png" },
-    { nombre: "Inventario", ruta: "/inventario", icono: "/icons/inventario.png" },
+    {
+      nombre: "Inventario",
+      ruta: "/inventario",
+      icono: "/icons/inventario.png",
+    },
+    {
+      nombre: "Fabricación",
+      ruta: "/fabricacion",
+      icono: "/icons/fabricacion.png",
+    },
   ],
 };
 
