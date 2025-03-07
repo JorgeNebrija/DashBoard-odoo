@@ -105,8 +105,8 @@
   h1 {
     font-size: 2rem;
     font-weight: 600;
-    color: #1f2937;
     margin-bottom: 1.5rem;
+    text-align: left;
     
   }
   h2 {
@@ -118,6 +118,8 @@
     margin-inline-end: 0px;
     font-weight: bold;
     unicode-bidi: isolate;
+    text-align: left;
+
 }
 
   /* Sección de estadísticas rápidas */

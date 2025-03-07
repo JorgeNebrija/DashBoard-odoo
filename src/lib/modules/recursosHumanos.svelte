@@ -224,4 +224,7 @@ cursor: grab;
     background-color: #e0e0e0;
     transform: scale(1.02);
   }
+  h1{
+    text-align: left;
+  }
 </style>

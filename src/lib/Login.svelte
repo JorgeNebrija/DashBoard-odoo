@@ -66,7 +66,6 @@
   </div>
 </div>
 
-
 <style>
   .contenedor-login {
     height: 100vh;
@@ -74,93 +73,115 @@
     align-items: center;
     justify-content: center;
     background-color: var(--color-fondo);
-  }
+    padding: 1rem;
+}
 
-  .tarjeta-login {
+.tarjeta-login {
     background-color: white;
-    padding: 20px;
-    border-radius: 0.5rem;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+}
 
-  }
-
-  .boton {
+.boton {
     background-color: #2563eb;
     color: white;
     border: none;
-    padding: 15px;
+    padding: 12px;
     font-weight: bold;
     cursor: pointer;
-    width: 150px;
+    width: 100%;
     border-radius: 0.5rem;
-  }
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+}
 
-  .boton:hover {
+.boton:hover {
     background-color: #1a53ce;
-  }
+    transform: scale(1.05);
+}
 
-  h1 {
+h1 {
     color: var(--color-primario);
     margin-bottom: 1.5rem;
-    text-align: center;
-  }
+    font-size: 1.5rem;
+    font-weight: bold;
+}
 
-  .formulario {
+.formulario {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-  }
+    width: 100%;
+}
 
-  .grupo-formulario {
+.grupo-formulario{
     width: 100%;
     text-align: left;
-  }
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
 
-  label {
+label {
     display: block;
-    margin-bottom: 0.5rem;
+    width: 100%; /* Igualar el ancho del input y el botón */
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--color-texto);
-  }
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
 
-  input {
+input {
     width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-  }
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-  input:focus {
+input:focus {
     outline: none;
     border-color: var(--color-primario);
-    box-shadow: 0 0 0 2px var(--color-primario-alpha);
-  }
+    box-shadow: 0 0 5px var(--color-primario-alpha);
+}
 
-  .mensaje-error {
+.mensaje-error {
     color: #ef4444;
     font-size: 0.875rem;
     margin-top: 1rem;
-  }
+    font-weight: 500;
+}
 
-  .credenciales-demo {
+.credenciales-demo {
     margin-top: 2rem;
     padding: 1rem;
     font-size: 0.875rem;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
+    text-align: center;
+}
 
-  code {
+code {
     display: block;
     padding: 0.5rem;
-    background-color: #eaeaea;
-    border-radius: 0.25rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
     font-family: monospace;
-  }
+    font-size: 0.875rem;
+}
 </style>

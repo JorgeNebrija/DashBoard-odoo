@@ -127,4 +127,8 @@
   .pendiente {
     color: orange;
   }
+  h1{
+    text-align: left;
+  }
+  
 </style>
