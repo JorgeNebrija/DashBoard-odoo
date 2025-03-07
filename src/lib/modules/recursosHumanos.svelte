@@ -165,8 +165,12 @@
   }
 
   .fecha {
+<<<<<<< HEAD
     border: 1px var(--color-texto) solid;
 background-color: transparent;
+=======
+    background:var(--color-fondo);
+>>>>>>> jorge
     color: var(--color-texto);
     padding: 10px;
     text-align: center;

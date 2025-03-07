@@ -67,106 +67,126 @@
 </div>
 
 <style>
-  .contenedor-login {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-fondo);
-    padding: 1rem;
+.contenedor-login {
+  min-height: 100vh; /* Usar min-height en lugar de height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-fondo);
+  padding: 2rem 1rem; /* Aumentar padding en móviles */
 }
 
 .tarjeta-login {
-    background-color: var(--color-elementos);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-width: 400px;
-    width: 100%;
+  background-color: var(--color-elementos);
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  width: 90%; /* Evitar que se expanda demasiado en móviles */
 }
 
 .boton {
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease;
 }
 
 .boton:hover {
-    background-color: #1a53ce;
-    transform: scale(1.05);
+  background-color: #1a53ce;
+  transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+  .boton {
+      font-size: 0.9rem; /* Reducir tamaño en pantallas pequeñas */
+      padding: 10px;
+  }
 }
 
 h1 {
-    color: var(--color-texto);
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    font-weight: bold;
+  color: var(--color-texto);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .formulario {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
-.grupo-formulario{
-    width: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+@media (max-width: 480px) {
+  .formulario {
+      gap: 0.75rem; /* Reducimos espacio entre elementos en móviles */
+  }
+}
+
+.grupo-formulario {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Mejor alineación del texto */
+
 }
 
 label {
-    display: block;
-    width: 100%; /* Igualar el ancho del input y el botón */
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--color-texto);
-    margin-bottom: 0.5rem;
-    text-align: left;
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-texto);
+  margin-bottom: 0.5rem;
+  text-align: left;
 }
 
 input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: var(--color-elementos);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 input:focus {
-    outline: none;
-    border-color: var(--color-primario);
-    box-shadow: 0 0 5px var(--color-primario-alpha);
+  outline: none;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 5px var(--color-primario-alpha);
+}
+
+@media (max-width: 480px) {
+  input {
+      padding: 10px; /* Reducir padding en móviles */
+  }
 }
 
 .mensaje-error {
-    color: #ef4444;
-    font-size: 0.875rem;
-    margin-top: 1rem;
-    font-weight: 500;
-}
-.credenciales-demo{
-  padding: 20px;
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: center; /* Mejor visibilidad en móviles */
 }
 
+.credenciales-demo {
+  padding: 20px;
+  text-align: center; /* Centrar contenido */
+}
 </style>
