@@ -1,19 +1,34 @@
 <script>
-  import { modules, irA } from "../../modules";
+  import { onMount } from "svelte";
+  import { modulos, irA } from "../../modules";
+  import { usuario } from "../store";
+
+  let datosUsuario;
+  usuario.subscribe((valor) => (datosUsuario = valor));
+
+  let busqueda = "";
+  let modulosDisponibles = [];
+
+  // Al montar el componente, filtramos los módulos según el usuario
+  onMount(() => {
+    if (datosUsuario?.rol) {
+      modulosDisponibles = modulos[datosUsuario.rol] || [];
+    }
+  });
 </script>
 
 <div class="sidebar">
   <div>
     <h1>Elius</h1>
     <ul>
-      {#each modules as module}
+      {#each modulosDisponibles as module}
         <li on:click={() => irA(module.ruta)}>
           <img
-            src={`/icons/${module.icon}`}
+            src={`${module.icono}`}
             alt=""
             width="24"
             height="24"
-          />{module.name}
+          />{module.nombre}
         </li>
       {/each}
     </ul>

@@ -1,13 +1,19 @@
 import { push } from "svelte-spa-router";
 
-export let modules = [
-  { name: "Inicio", icon: "inicio.png", ruta: "/inicio" },
-  { name: "Recursos Humanos", icon: "rrhh.png", ruta: "/rrhh" },
-  { name: "Facturación", icon: "facturacion.png", ruta: "/facturacion" },
-  { name: "Finanzas", icon: "finanzas.png", ruta: "/finanzas" },
-  { name: "Inventario", icon: "inventario.png", ruta: "/inventario" },
-  { name: "Ventas", icon: "ventas.png", ruta: "/ventas" },
-];
+// Lista de módulos disponibles
+export const modulos = {
+  admin: [
+    { nombre: "Facturación", ruta: "/facturacion", icono: "/icons/facturacion.png" },
+    { nombre: "Finanzas", ruta: "/finanzas", icono: "/icons/finanzas.png" },
+    { nombre: "Recursos Humanos", ruta: "/rrhh", icono: "/icons/rrhh.png" },
+    { nombre: "Ventas", ruta: "/ventas", icono: "/icons/ventas.png" },
+    { nombre: "Inventario", ruta: "/inventario", icono: "/icons/inventario.png" },
+  ],
+  empleado: [
+    { nombre: "Ventas", ruta: "/ventas", icono: "/icons/ventas.png" },
+    { nombre: "Inventario", ruta: "/inventario", icono: "/icons/inventario.png" },
+  ],
+};
 
 export function irA(ruta) {
   push(ruta);
