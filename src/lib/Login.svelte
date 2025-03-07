@@ -160,7 +160,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   font-size: 1rem;
-  background-color: #f9f9f9;
+  background-color: var(--color-elementos);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   
 }
