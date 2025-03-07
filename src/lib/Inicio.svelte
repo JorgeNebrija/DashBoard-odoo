@@ -53,7 +53,7 @@
   <div class="content">
     <NavBar />
     <div class="grid" bind:this={listElement}>
-      {#each modulosFiltrados.slice(1, 7) as modulo}
+      {#each modulosFiltrados.slice(1, 8) as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
           <img
             src={`${modulo.icono}`}
