@@ -3,23 +3,9 @@
   import { push } from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
-  import { usuario } from "../lib/store";  // ← Importar el store del usuario
+  import { usuario } from "../lib/store"; // ← Importar el store del usuario
   import Sortable from "sortablejs";
-
-  // Lista de módulos según el rol del usuario
-  const modulos = {
-    admin: [
-      { nombre: "Facturación", ruta: "/facturacion", icon: "facturacion.png" },
-      { nombre: "Finanzas", ruta: "/finanzas", icon: "finanzas.png" },
-      { nombre: "Recursos Humanos", ruta: "/rrhh", icon: "rrhh.png" },
-      { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
-      { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
-    ],
-    empleado: [
-      { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
-      { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
-    ]
-  };
+  import { modulos } from "../modules";
 
   let datosUsuario;
   let modulosFiltrados = [];
@@ -32,7 +18,7 @@
     // Filtrar módulos según el rol
     if (datosUsuario?.rol) {
       modulosFiltrados = modulos[datosUsuario.rol] || [];
-      
+
       // Cargar orden desde sessionStorage si existe
       if (sessionStorage.getItem(clave_sesion)) {
         const ordenGuardado = JSON.parse(sessionStorage.getItem(clave_sesion));
@@ -68,14 +54,18 @@
     <div class="grid" bind:this={listElement}>
       {#each modulosFiltrados as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
-          <img src={`/icons/${modulo.icon}`} alt={modulo.nombre} width="24" height="24" />
+          <img
+            src={`${modulo.icono}`}
+            alt={modulo.nombre}
+            width="24"
+            height="24"
+          />
           <br />{modulo.nombre}
         </div>
       {/each}
     </div>
   </div>
 </div>
-
 
 <style>
   .container {

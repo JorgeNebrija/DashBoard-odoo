@@ -3,6 +3,7 @@
   import { usuario } from "../store"; // Importamos el usuario autenticado
   import { cerrarSesion } from "../../lib/firebase"; // Función para cerrar sesión
   import { onMount } from "svelte";
+  import { modulos } from "../../modules";
 
   let datosUsuario;
   usuario.subscribe((valor) => (datosUsuario = valor));
@@ -10,21 +11,6 @@
   let busqueda = "";
   let modulosDisponibles = [];
   let modulosFiltrados = [];
-
-  // Lista de módulos disponibles
-  const modulos = {
-    admin: [
-      { nombre: "Facturación", ruta: "/facturacion", icono: "facturacion.png" },
-      { nombre: "Finanzas", ruta: "/finanzas", icono: "finanzas.png" },
-      { nombre: "Recursos Humanos", ruta: "/rrhh", icono: "rrhh.png" },
-      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.png" },
-      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.png" }
-    ],
-    empleado: [
-      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.png" },
-      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.png" }
-    ]
-  };
 
   // Al montar el componente, filtramos los módulos según el usuario
   onMount(() => {
@@ -67,7 +53,11 @@
       <ul class="resultados-busqueda">
         {#each modulosFiltrados as modulo}
           <li on:click={() => push(modulo.ruta)}>
-            <img src={`/icons/${modulo.icono}`} alt={modulo.nombre} class="icono" />
+            <img
+              src={`${modulo.icono}`}
+              alt={modulo.nombre}
+              class="icono"
+            />
             {modulo.nombre}
           </li>
         {/each}
@@ -91,9 +81,8 @@
     border-bottom: 1px solid #ddd;
     position: relative;
   }
-h1{
-  
-}
+  h1 {
+  }
   .contenedor-busqueda {
     position: relative;
   }
