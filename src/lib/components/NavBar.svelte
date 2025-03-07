@@ -1,9 +1,10 @@
 <script>
   import { push } from "svelte-spa-router";
-  import { usuario } from "../store"; // Importamos el usuario autenticado
-  import { cerrarSesion } from "../../lib/firebase"; // Función para cerrar sesión
+  import { usuario } from "../store";
+  import { cerrarSesion } from "../../lib/firebase";
   import { onMount } from "svelte";
   import { modulos } from "../../modules";
+  import SideBar from "./SideBar.svelte"; // Importamos tu componente SideBar
 
   let datosUsuario;
   usuario.subscribe((valor) => (datosUsuario = valor));
@@ -11,19 +12,18 @@
   let busqueda = "";
   let modulosDisponibles = [];
   let modulosFiltrados = [];
+  let mostrarSidebar = false;
 
-  // Al montar el componente, filtramos los módulos según el usuario
   onMount(() => {
     if (datosUsuario?.rol) {
       modulosDisponibles = modulos[datosUsuario.rol] || [];
-      modulosFiltrados = [...modulosDisponibles]; // Inicializar la lista filtrada
+      modulosFiltrados = [...modulosDisponibles];
     }
   });
 
-  // Función para buscar módulos en la barra de búsqueda
   function buscarModulo() {
     if (busqueda.trim() === "") {
-      modulosFiltrados = [...modulosDisponibles]; // Restaurar si está vacío
+      modulosFiltrados = [...modulosDisponibles];
     } else {
       modulosFiltrados = modulosDisponibles.filter((modulo) =>
         modulo.nombre.toLowerCase().includes(busqueda.toLowerCase())
@@ -31,10 +31,17 @@
     }
   }
 
-  // Cerrar sesión
   function salir() {
     cerrarSesion();
     push("/");
+  }
+
+  function toggleSidebar() {
+    mostrarSidebar = !mostrarSidebar;
+  }
+
+  function cerrarSidebar() {
+    mostrarSidebar = false;
   }
 </script>
 
@@ -48,7 +55,12 @@
       on:input={buscarModulo}
     />
 
-    <!-- Resultados de búsqueda -->
+    {#if !mostrarSidebar}
+    <button class="menu-responsive" on:click={toggleSidebar}>
+      <img src="../icons/menu-sidebar.png" alt="Menú" />
+    </button>
+  {/if}
+
     {#if busqueda && modulosFiltrados.length > 0}
       <ul class="resultados-busqueda">
         {#each modulosFiltrados as modulo}
@@ -60,6 +72,8 @@
               width="24px"
               fill="#012B66"><path d={modulo.icono} /></svg
             >
+
+ 
             <div class="spacer" style="width: 5px;"></div>
             {modulo.nombre}
           </li>
@@ -90,6 +104,13 @@
   </div>
 </div>
 
+{#if mostrarSidebar}
+  <div class="overlay" on:click={cerrarSidebar}></div>
+  <div class="sidebar">
+    <SideBar />
+  </div>
+{/if}
+
 <style>
   .barra-navegacion {
     background: var(--color-elementos);
@@ -101,8 +122,7 @@
     border-bottom: 1px solid var(--color-borde);
     position: relative;
   }
-  h1 {
-  }
+
   .contenedor-busqueda {
     position: relative;
   }
@@ -115,7 +135,6 @@
     background-color: transparent;
   }
 
-  /* Estilos para los resultados de búsqueda */
   .resultados-busqueda {
     position: absolute;
     top: 100%;
@@ -151,13 +170,16 @@
     width: 20px;
     height: 20px;
     margin-right: 10px;
+    background-color: var(--color-hover);
+    border-radius: 0.5rem;
+
   }
 
   .boton-salir {
     background-color: #2563eb;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     font-weight: bold;
     cursor: pointer;
     width: 150px;
@@ -168,6 +190,42 @@
     background-color: #1c52c5;
   }
 
+  .menu-responsive {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .menu-responsive img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100%;
+    background: var(--color-elementos);
+    z-index: 10;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+
   @media (max-width: 800px) {
     .barra-navegacion {
       padding: 20px;
@@ -175,6 +233,10 @@
 
     .busqueda {
       width: 100px;
+    }
+
+    .menu-responsive {
+      display: block;
     }
   }
 </style>
