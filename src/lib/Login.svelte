@@ -165,5 +165,8 @@ input:focus {
     margin-top: 1rem;
     font-weight: 500;
 }
+.credenciales-demo{
+  padding: 10px;
+}
 
 </style>

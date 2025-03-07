@@ -87,7 +87,9 @@
     display: flex;
     height: 100vh;
   }
-
+h1{
+  padding: 20px;
+}
   .dashboard {
     padding: 50px;
     overflow-y: scroll;
@@ -119,5 +121,7 @@
     max-width: 600px;
     height: 300px;
     margin: auto;
+    background-color: white;
+
   }
 </style>
