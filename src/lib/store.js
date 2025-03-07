@@ -1,3 +1,6 @@
 import { writable } from "svelte/store";
 
-export const usuario = writable(null);
+export const usuario = writable({
+  correo: "",
+  rol: "",
+});
