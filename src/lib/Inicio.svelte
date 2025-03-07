@@ -3,55 +3,57 @@
   import { push } from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
-  import { modules, irA } from "../modules";
-  import ProteccionRuta from "./components/ProteccionRuta.svelte";
+  import { usuario } from "../lib/store";  // ← Importar el store del usuario
+  
+  // Lista completa de módulos
+  const modulos = {
+  admin: [
+    { nombre: "Facturación", ruta: "/facturacion", icon: "facturacion.png" },
+    { nombre: "Finanzas", ruta: "/finanzas", icon: "finanzas.png" },
+    { nombre: "Recursos Humanos", ruta: "/rrhh", icon: "rrhh.png" },
+    { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
+    { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
+  ],
+  empleado: [
+    { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
+    { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
+  ]
+};
 
 
-  // @ts-ignore
-  import Sortable from "sortablejs";
+  let datosUsuario;
+  let modulosFiltrados = [];
 
-  let modulesArray = modules.slice(1, 6);
+  usuario.subscribe((valor) => {
+    datosUsuario = valor;
 
-  let listElement;
-
-  const clave_sesion = "orden_modulo";
-
-  // Si hay datos guardados, los cargamos
-  if (sessionStorage.getItem(clave_sesion)) {
-    const orden = JSON.parse(sessionStorage.getItem(clave_sesion));
-    modulesArray = orden;
-  }
-
-  onMount(() => {
-    Sortable.create(listElement, {
-      animation: 200,
-      ghostClass: "sortable-ghost", // Clase que se aplica al ítem fantasma
-      chosenClass: "sortable-chosen", // Clase mientras arrastras
-      dragClass: "sortable-drag", // Clase opcional para más control
-      onEnd: (evt) => {
-        const [movedItem] = modulesArray.splice(evt.oldIndex, 1);
-        modulesArray.splice(evt.newIndex, 0, movedItem);
-        sessionStorage.setItem(clave_sesion, JSON.stringify(modulesArray));
-      },
-    });
+    // Filtrar módulos según el rol
+    if (datosUsuario?.rol) {
+      modulosFiltrados = modulos[datosUsuario.rol] || [];
+    }
   });
+
+  function irA(ruta) {
+    push(ruta);
+  }
 </script>
 
-<div class="container">
-    <SideBar />
 
-    <div class="content">
-      <NavBar />
-      <div class="grid" bind:this={listElement}>
-        {#each modulesArray as module}
-          <div class="module" on:click={() => irA(module.ruta)}>
-            <img src={`/icons/${module.icon}`} alt="" width="24" height="24" />
-            <br />{module.name}
-          </div>
-        {/each}
-      </div>
+<div class="container">
+  <SideBar />
+  <div class="content">
+    <NavBar />
+    <div class="grid">
+      {#each modulosFiltrados as modulo}
+        <div class="module" on:click={() => irA(modulo.ruta)}>
+          <img src={`/icons/${modulo.icon}`} alt={modulo.nombre} width="24" height="24" />
+          <br />{modulo.nombre}
+        </div>
+      {/each}
     </div>
   </div>
+</div>
+
 
 <style>
   .container {
