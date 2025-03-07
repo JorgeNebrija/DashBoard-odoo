@@ -60,4 +60,4 @@ async function cerrarSesion() {
   usuario.set(null);
 }
 
-export { autenticacion, baseDeDatos, signInWithEmailAndPassword, registrarUsuario, cerrarSesion, getDoc, doc };
+export { autenticacion, baseDeDatos, signInWithEmailAndPassword, createUserWithEmailAndPassword, registrarUsuario, cerrarSesion, onAuthStateChanged , getDoc, doc };

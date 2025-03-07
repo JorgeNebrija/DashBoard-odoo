@@ -7,6 +7,7 @@
   import ProteccionRuta from "./components/ProteccionRuta.svelte";
 
 
+  // @ts-ignore
   import Sortable from "sortablejs";
 
   let modulesArray = modules.slice(1, 6);
@@ -35,8 +36,8 @@
     });
   });
 </script>
-<ProteccionRuta>
-  <div class="container">
+
+<div class="container">
     <SideBar />
 
     <div class="content">
@@ -51,7 +52,6 @@
       </div>
     </div>
   </div>
-</ProteccionRuta>
 
 <style>
   .container {
