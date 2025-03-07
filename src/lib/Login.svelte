@@ -77,7 +77,7 @@
 }
 
 .tarjeta-login {
-    background-color: white;
+    background-color: var(--color-elementos);
     padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
@@ -108,7 +108,7 @@
 }
 
 h1 {
-    color: var(--color-primario);
+    color: var(--color-texto);
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
     font-weight: bold;
@@ -166,22 +166,4 @@ input:focus {
     font-weight: 500;
 }
 
-.credenciales-demo {
-    margin-top: 2rem;
-    padding: 1rem;
-    font-size: 0.875rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-code {
-    display: block;
-    padding: 0.5rem;
-    background-color: #f3f4f6;
-    border-radius: 0.5rem;
-    font-family: monospace;
-    font-size: 0.875rem;
-}
 </style>

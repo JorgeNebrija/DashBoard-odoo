@@ -72,13 +72,13 @@
 
 <style>
   .barra-navegacion {
-    background: white;
+    background: var(--color-elementos);
     padding: 20px 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--color-borde);
     position: relative;
   }
   h1 {
@@ -90,8 +90,9 @@
   .busqueda {
     padding: 10px;
     width: 200px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
+    background-color: transparent;
   }
 
   /* Estilos para los resultados de búsqueda */
@@ -100,7 +101,7 @@
     top: 100%;
     left: 0;
     width: 100%;
-    background: white;
+    background: var(--color-elementos);
     border: 1px solid #ddd;
     border-radius: 0.5rem;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);

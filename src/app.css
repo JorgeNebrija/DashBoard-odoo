@@ -1,12 +1,27 @@
+:root{
+  --color-fondo: #f4f4f4;
+  --color-elementos: white;
+  --color-texto: #012B66;
+  --color-hover: #f0f0f0;
+  --color-borde: #ddd;
+ /* --color-fondo: black;
+  --color-elementos: #1e1e1e;
+  --color-texto: grey;
+  --color-hover: #020202;
+  --color-borde: grey;*/
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  color: #012B66;
+  color: var(--color-texto);
 }
 
 body {
-  background-color: #eeee;
+  background-color: var(--color-fondo);
 }
 
 h1 {

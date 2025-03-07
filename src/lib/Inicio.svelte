@@ -77,7 +77,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   .grid {
@@ -95,7 +95,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: white;
+    background:var(--color-elementos);
     width: 15%;
     height: 150px;
     padding: 20px;
@@ -112,18 +112,18 @@
   }
 
   .module:hover {
-    background: #f0f0f0;
+    background: var(--color-hover);
   }
 
   /* Elimina la transparencia del fantasma */
   .sortable-ghost {
     opacity: 1;
-    background-color: white;
+    background-color: var(--color-elementos);
   }
 
   /* Opcionalmente, añade estilo al ítem que arrastras */
   .sortable-chosen {
-    background-color: white;
+    background-color: var(--color-elementos);
     transform: scale(1.05);
   }
 

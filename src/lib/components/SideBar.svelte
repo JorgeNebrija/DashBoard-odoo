@@ -15,6 +15,28 @@
       modulosDisponibles = modulos[datosUsuario.rol] || [];
     }
   });
+
+  function cambiarTema() {
+    let root = document.documentElement; // Accede a :root
+    let temaActual = getComputedStyle(root).getPropertyValue("--color-fondo").trim(); // Obtiene el color actual
+
+    if (temaActual === "#f4f4f4") { 
+        // Cambiar al tema oscuro
+        root.style.setProperty("--color-fondo", "black");
+        root.style.setProperty("--color-elementos", "#1e1e1e");
+        root.style.setProperty("--color-texto", "grey");
+        root.style.setProperty("--color-hover", "#020202");
+        root.style.setProperty("--color-borde", "grey");
+    } else {
+        // Cambiar al tema claro
+        root.style.setProperty("--color-fondo", "#f4f4f4");
+        root.style.setProperty("--color-elementos", "white");
+        root.style.setProperty("--color-texto", "#012B66");
+        root.style.setProperty("--color-hover", "#f0f0f0");
+        root.style.setProperty("--color-borde", "#ddd");
+    }
+}
+
 </script>
 
 <div class="sidebar">
@@ -33,18 +55,19 @@
       {/each}
     </ul>
   </div>
+  <button on:click={()=>cambiarTema()}>Tema</button>
 </div>
 
 <style>
   .sidebar {
     width: 250px;
-    background: #ffffff;
-    color: #012b66;
+    background: var(--color-elementos);
+    color: var(--color-texto);
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid var(--color-borde);
   }
 
   .sidebar h1 {
@@ -68,7 +91,7 @@
   }
 
   .sidebar ul li:hover {
-    background: #f0f0f0;
+    background: var(--color-hover);
   }
 
   @media (max-width: 800px) {
