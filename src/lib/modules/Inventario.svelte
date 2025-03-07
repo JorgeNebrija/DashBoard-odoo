@@ -79,20 +79,20 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   .estadisticas {
     padding: 20px;
-    background-color: white;
+    background-color: var(--color-elementos);
     border-radius: 0.5rem;
     margin-top: 10px;
-    color: black;
+    color: var(--color-texto);
     margin-bottom: 50px;
   }
   .estadisticas p,
   .estadisticas strong {
-    color: black;
+    color: var(--color-texto);
   }
 
   /* Estilos de Alertas */
@@ -107,19 +107,19 @@
   .alerta {
     padding: 10px;
     border-radius: 5px;
-    color: white;
+    color: var(--color-texto);
   }
 
   .advertencia {
-    background-color:white;
+    background-color:var(--color-elementos);
   }
 
   .información {
-    background-color: white;
+    background-color: var(--color-elementos);
   }
 
   .éxito {
-    background-color: white; 
+    background-color: var(--color-elementos); 
   }
 
   /* Tabla de Productos */
@@ -127,20 +127,20 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    background: white;
+    background: var(--color-elementos);
   }
 
   .encabezado-tabla th {
-    color: black;
-    background-color: lightgrey;
+    color: var(--color-texto);
+    background-color: var(--color-encabezado-tabla);
   }
 
   th,
   td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     padding: 10px;
     text-align: center;
-    color: black;
+    color: var(--color-texto);
   }
 
   .normal {

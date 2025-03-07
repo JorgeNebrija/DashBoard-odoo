@@ -105,33 +105,34 @@
 
   .estadisticas {
     padding: 20px;
-    background-color: white;
+    background-color: var(--color-elementos);
     border-radius: 0.5rem;
     margin-top: 10px;
     margin-bottom: 50px;
-    color: black;
+    color: var(--color-texto);
   }
 
   .estadisticas p,
   .estadisticas strong {
-    color: black;
+    color: var(--color-texto);
   }
 
   .ventas {
     padding: 50px;
     overflow-y: scroll;
+
   }
 
   .content {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   .encabezado-tabla th {
-    background-color: lightgray;
-    color: black;
+    background-color: var(--color-encabezado-tabla);
+    color: var(--color-texto);
   }
 
   table {
@@ -155,6 +156,7 @@
   canvas {
     display: block;
     max-width: 100%;
+    border: var(--color-borde);
   }
 
   /* Tabla de Ventas */
@@ -166,10 +168,10 @@
 
   th,
   td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     padding: 10px;
     text-align: center;
-    color: black;
+    color: var(--color-texto);
   }
 
   .completado {

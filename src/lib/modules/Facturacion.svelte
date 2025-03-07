@@ -99,7 +99,7 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   h1 {
@@ -131,8 +131,8 @@
   }
 
   .tarjeta-estadistica {
-    background-color: white;
-    border: 1px solid #e5e7eb;
+    background-color: var(--color-elementos);
+    border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
     padding: 1.5rem;
     flex: 1;
@@ -143,32 +143,32 @@
   .valor-estadistica {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #111827;
+    color: var(--color-texto);
   }
 
   .etiqueta-estadistica {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: var(--color-texto);
   }
 
   /* Tabla de Facturas */
   table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    background-color: var(--color-elementos);
     border-radius: 5px;
   }
 
   th, td {
     padding: 0.75rem;
     text-align: left;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--color-borde);
   }
 
   th {
     font-weight: 600;
-    color: #1f2937;
-    background: #f9fafb;
+    color: var(--color-texto);
+    background: var(--color-encabezado-tabla);
   }
 
   .estado {
@@ -195,14 +195,14 @@
     justify-content: space-between;
     padding: 1rem;
     border-radius: 0.5rem;
-    background-color: white;
+    background-color: var(--color-elementos);
     border: 1px solid #e5e7eb;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   .titulo-resumen {
     font-weight: bold;
-    color: #1f2937;
+    color: var(--color-texto);
   }
 
   .valor-resumen {

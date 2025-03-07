@@ -119,20 +119,20 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   .estadisticas {
     padding: 20px;
-    background-color: white;
+    background-color: var(--color-elementos);
     border-radius: 0.5rem;
     margin-top: 10px;
-    color: black;
+    color: var(--color-texto);
     margin-bottom: 50px;
   }
   .estadisticas p,
   .estadisticas strong {
-    color: black;
+    color: var(--color-texto);
   }
 
   /* Estilos de Eventos */
@@ -148,7 +148,7 @@
   .evento {
     display: flex;
     align-items: center;
-    background: white;
+    background: var(--color-elementos);
     padding: 10px;
     border-radius: 8px;
 cursor: grab;
@@ -156,17 +156,17 @@ cursor: grab;
 
   .evento .fecha .dia,
   .evento .fecha .mes {
-    color: white;
+    color: var(--color-texto);
   }
 
   .evento .info h3,
   .evento .info p {
-    color: black;
+    color: var(--color-texto);
   }
 
   .fecha {
     background: #333;
-    color: white;
+    color: var(--color-texto);
     padding: 10px;
     text-align: center;
     border-radius: 5px;
@@ -195,16 +195,16 @@ cursor: grab;
   }
 
   .encabezado-tabla th {
-    color: black;
-    background-color: lightgrey;
+    color: var(--color-texto);
+    background-color: var(--color-encabezado-tabla);
   }
 
   th,
   td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-borde);
     padding: 10px;
     text-align: center;
-    color: black;
+    color: var(--color-texto);
   }
 
   .activo {
@@ -217,11 +217,11 @@ cursor: grab;
 
   .sortable-ghost {
     opacity: 1;
-    background-color: #f9f9f9;
+    background-color: var(--color-elementos);
   }
 
   .sortable-chosen {
-    background-color: #e0e0e0;
+    background-color: var(--color-elementos);
     transform: scale(1.02);
   }
   h1{

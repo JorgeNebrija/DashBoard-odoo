@@ -113,7 +113,7 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      background: #f4f4f4;
+      background: var(--color-fondo);
     }
   
     h1 {
@@ -139,7 +139,7 @@
     }
   
     .tarjeta-estadistica {
-      background-color: white;
+      background-color: var(--color-elementos);
       border: 1px solid #e5e7eb;
       border-radius: 0.5rem;
       padding: 1.5rem;
@@ -151,7 +151,7 @@
     .valor-estadistica {
       font-size: 1.5rem;
       font-weight: 600;
-      color: #111827;
+      color: var(--color-texto);
     }
   
     .etiqueta-estadistica {
@@ -167,7 +167,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: white;
+      background-color: var(--color-elementos);
       border-radius: 5px;
     }
   
@@ -179,8 +179,8 @@
   
     th {
       font-weight: 600;
-      color: #1f2937;
-      background: #f9fafb;
+      color: var(--color-texto);
+      background: var(--color-encabezado-tabla);
     }
   
     .estado {

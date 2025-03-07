@@ -31,6 +31,7 @@
       root.style.setProperty("--color-texto", "white");
       root.style.setProperty("--color-hover", "#020202");
       root.style.setProperty("--color-borde", "white");
+      root.style.setProperty("--color-encabezado-tabla", "grey");
     } else {
       // Cambiar al tema claro
       root.style.setProperty("--color-fondo", "#f4f4f4");
@@ -38,6 +39,7 @@
       root.style.setProperty("--color-texto", "#012B66");
       root.style.setProperty("--color-hover", "#f0f0f0");
       root.style.setProperty("--color-borde", "#ddd");
+      root.style.setProperty("--color-encabezado-tabla", "white");
     }
   }
 </script>

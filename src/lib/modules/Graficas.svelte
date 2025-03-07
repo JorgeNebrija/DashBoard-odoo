@@ -99,7 +99,7 @@ h1{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background: #f4f4f4;
+    background: var(--color-fondo);
   }
 
   .botones-filtro {
@@ -121,7 +121,7 @@ h1{
     max-width: 600px;
     height: 300px;
     margin: auto;
-    background-color: white;
+    background-color: var(--color-elementos);
 
   }
 </style>
