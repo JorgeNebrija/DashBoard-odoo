@@ -75,7 +75,7 @@
     }
   
     .tarjeta-registro {
-    background-color: white;
+    background-color: var(--color-elementos);
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -118,11 +118,12 @@
       border: 1px solid #ccc;
       padding: 0.75rem;
       border-radius: 0.25rem;
+      background-color: var(--color-elementos);
     }
   
     input:focus, select:focus {
       outline: none;
-      border-color: var(--color-primario);
+      border-color: var(--color-elementos);
       box-shadow: 0 0 0 2px var(--color-primario-alpha);
     }
   
