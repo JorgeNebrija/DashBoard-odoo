@@ -55,12 +55,16 @@
     <div class="grid" bind:this={listElement}>
       {#each modulosFiltrados.slice(1, 8) as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
-          <img
-            src={`${modulo.icono}`}
-            alt={modulo.nombre}
-            width="24"
-            height="24"
-          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="35px"
+            viewBox="0 -960 960 960"
+            width="35px"
+            fill="#012B66"
+            ><path
+              d={modulo.icono}
+            /></svg
+          >
           <br />{modulo.nombre}
         </div>
       {/each}
@@ -95,7 +99,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background:var(--color-elementos);
+    background: var(--color-elementos);
     width: 15%;
     height: 150px;
     padding: 20px;

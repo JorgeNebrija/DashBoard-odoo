@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { modulos, irA } from "../../modules";
   import { usuario } from "../store";
+  import Module from "module";
 
   let datosUsuario;
   usuario.subscribe((valor) => (datosUsuario = valor));
@@ -42,16 +43,26 @@
 
 <div class="sidebar">
   <div>
-    <h1>Elius</h1>
+    <a href="/inicio#/inicio">
+      <img
+        src="/Elius-logo-removebg-preview.png"
+        alt=""
+        width="100"
+        height="50"
+      /></a
+    >
+
     <ul>
       {#each modulosDisponibles as module}
         <li on:click={() => irA(module.ruta)}>
-          <img
-            src={`${module.icono}`}
-            alt=""
-            width="24"
-            height="24"
-          />{module.nombre}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#012B66"><path d={module.icono} /></svg
+          >
+          {module.nombre}
         </li>
       {/each}
     </ul>

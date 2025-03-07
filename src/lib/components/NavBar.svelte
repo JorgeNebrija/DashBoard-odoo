@@ -53,11 +53,14 @@
       <ul class="resultados-busqueda">
         {#each modulosFiltrados as modulo}
           <li on:click={() => push(modulo.ruta)}>
-            <img
-              src={`${modulo.icono}`}
-              alt={modulo.nombre}
-              class="icono"
-            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#012B66"><path d={modulo.icono} /></svg
+            >
+<div class="spacer" style="width: 5px;"></div>
             {modulo.nombre}
           </li>
         {/each}
