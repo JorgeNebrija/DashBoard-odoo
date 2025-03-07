@@ -123,9 +123,13 @@
   }
 
   .resultados-busqueda li:hover {
-    background: #f3f4f6;
-  }
+  color: #2563eb;
+font-weight: bold;
+}
 
+.resultados-busqueda li:hover svg {
+  fill: #2563eb;
+}
   .resultados-busqueda img.icono {
     width: 20px;
     height: 20px;

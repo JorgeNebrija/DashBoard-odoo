@@ -3,7 +3,7 @@
   import { push } from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
-  import { usuario } from "../lib/store"; // ← Importar el store del usuario
+  import { usuario } from "../lib/store";
   import Sortable from "sortablejs";
   import { modulos } from "../modules";
 
@@ -15,14 +15,25 @@
   usuario.subscribe((valor) => {
     datosUsuario = valor;
 
-    // Filtrar módulos según el rol
     if (datosUsuario?.rol) {
-      modulosFiltrados = modulos[datosUsuario.rol] || [];
+      const modulosRol = modulos[datosUsuario.rol].filter(
+        (modulo) => modulo.nombre !== "Inicio"
+      );
 
-      // Cargar orden desde sessionStorage si existe
-      if (sessionStorage.getItem(clave_sesion)) {
-        const ordenGuardado = JSON.parse(sessionStorage.getItem(clave_sesion));
+      // Validar si hay un orden guardado y que los módulos coincidan
+      const ordenGuardado = JSON.parse(sessionStorage.getItem(clave_sesion));
+
+      if (
+        ordenGuardado &&
+        Array.isArray(ordenGuardado) &&
+        ordenGuardado.length === modulosRol.length &&
+        ordenGuardado.every((moduloGuardado) =>
+          modulosRol.find((modulo) => modulo.nombre === moduloGuardado.nombre)
+        )
+      ) {
         modulosFiltrados = ordenGuardado;
+      } else {
+        modulosFiltrados = modulosRol;
       }
     }
   });
@@ -34,9 +45,9 @@
   onMount(() => {
     Sortable.create(listElement, {
       animation: 200,
-      ghostClass: "sortable-ghost", // Clase que se aplica al ítem fantasma
-      chosenClass: "sortable-chosen", // Clase mientras arrastras
-      dragClass: "sortable-drag", // Clase opcional para más control
+      ghostClass: "sortable-ghost",
+      chosenClass: "sortable-chosen",
+      dragClass: "sortable-drag",
       onEnd: (evt) => {
         const [movedItem] = modulosFiltrados.splice(evt.oldIndex, 1);
         modulosFiltrados.splice(evt.newIndex, 0, movedItem);
@@ -47,25 +58,21 @@
   });
 </script>
 
+
 <div class="container">
-
-
   <SideBar />
 
   <div class="content">
     <NavBar />
     <div class="grid" bind:this={listElement}>
-      {#each modulosFiltrados.slice(1, 8) as modulo}
+      {#each modulosFiltrados as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="35px"
             viewBox="0 -960 960 960"
             width="35px"
-            fill="#012B66"
-            ><path
-              d={modulo.icono}
-            /></svg
+            fill="#012B66"><path d={modulo.icono} /></svg
           >
           <br />{modulo.nombre}
         </div>
@@ -89,7 +96,7 @@
   .grid {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 30px;

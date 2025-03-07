@@ -2,7 +2,7 @@
   import NavBar from "../components/NavBar.svelte";
   import recursosHumanos from "../../data/recursosHumanos.json"; // Importar JSON directamente
   import SideBar from "../components/SideBar.svelte";
-  
+
   import Sortable from "sortablejs";
   import { onMount } from "svelte";
 
@@ -31,7 +31,7 @@
       dragClass: "sortable-drag", // Clase opcional para más control
       onEnd: (evt) => {
         const [movedItem] = eventosArray.splice(evt.oldIndex, 1);
-       eventosArray.splice(evt.newIndex, 0, movedItem);
+        eventosArray.splice(evt.newIndex, 0, movedItem);
         sessionStorage.setItem(clave_sesion, JSON.stringify(eventosArray));
       },
     });
@@ -151,7 +151,7 @@
     background: var(--color-elementos);
     padding: 10px;
     border-radius: 8px;
-cursor: grab;
+    cursor: grab;
   }
 
   .evento .fecha .dia,
@@ -165,7 +165,8 @@ cursor: grab;
   }
 
   .fecha {
-    background: #333;
+    border: 1px var(--color-texto) solid;
+background-color: transparent;
     color: var(--color-texto);
     padding: 10px;
     text-align: center;
@@ -224,7 +225,7 @@ cursor: grab;
     background-color: var(--color-elementos);
     transform: scale(1.02);
   }
-  h1{
+  h1 {
     text-align: left;
   }
 </style>

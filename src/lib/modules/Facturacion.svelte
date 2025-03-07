@@ -132,7 +132,6 @@
 
   .tarjeta-estadistica {
     background-color: var(--color-elementos);
-    border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
     padding: 1.5rem;
     flex: 1;
@@ -196,7 +195,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: var(--color-elementos);
-    border: 1px solid #e5e7eb;
+
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
 

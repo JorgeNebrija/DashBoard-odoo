@@ -120,7 +120,6 @@
   .ventas {
     padding: 50px;
     overflow-y: scroll;
-
   }
 
   .content {
@@ -140,11 +139,12 @@
   }
 
   .contenedor-grafico {
+    width: 100%;
+    max-width: 600px;
     padding: 20px;
-    display: flex;
-    justify-content: left;
-    height: 300px;
-    margin-top: 10px;
+    margin-top: 20px;
+    background-color: var(--color-elementos);
+    border-radius: 0.5rem;
     margin-bottom: 50px;
   }
 

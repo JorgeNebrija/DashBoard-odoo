@@ -20,6 +20,7 @@
   padding: 0;
   font-family: sans-serif;
   color: var(--color-texto);
+  transition: all 0.3s ease;
 }
 
 body {
@@ -37,4 +38,5 @@ h2 {
 
 svg {
   fill: var(--color-texto);
+  transition: none;
 }

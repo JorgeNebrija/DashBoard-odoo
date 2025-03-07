@@ -10,7 +10,7 @@
   let busqueda = "";
   let modulosDisponibles = [];
 
-  $: modulosDisponibles = modulos[datosUsuario.rol]
+  $: modulosDisponibles = modulos[datosUsuario.rol];
   // Al montar el componente, filtramos los módulos según el usuario
   onMount(() => {
     if (datosUsuario?.rol) {
@@ -30,7 +30,7 @@
       root.style.setProperty("--color-elementos", "#1e1e1e");
       root.style.setProperty("--color-texto", "white");
       root.style.setProperty("--color-hover", "#020202");
-      root.style.setProperty("--color-borde", "white");
+      root.style.setProperty("--color-borde", "grey");
       root.style.setProperty("--color-encabezado-tabla", "grey");
     } else {
       // Cambiar al tema claro
@@ -68,7 +68,6 @@
           {module.nombre}
         </li>
       {/each}
-
     </ul>
   </div>
   <button on:click={() => cambiarTema()} class="boton-tema">Cambiar Tema</button
@@ -77,7 +76,7 @@
 
 <style>
   .sidebar {
-    width: 250px;
+    width: 200px;
     background: var(--color-elementos);
     color: var(--color-texto);
     padding: 20px;
@@ -115,9 +114,13 @@
     cursor: pointer;
     gap: 5px;
   }
-
   .sidebar ul li:hover {
-    background: var(--color-hover);
+    color: #2563eb;
+    font-weight: bold;
+  }
+
+  .sidebar ul li:hover svg {
+    fill: #2563eb;
   }
 
   @media (max-width: 800px) {
