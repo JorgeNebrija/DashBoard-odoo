@@ -1,55 +1,85 @@
 <script>
   import { push } from "svelte-spa-router";
-  import { modules, irA } from "../../modules"; // Importamos los módulos y la función de navegación
+  import { usuario } from "../store"; // Importamos el usuario autenticado
+  import { cerrarSesion } from "../../lib/firebase"; // Función para cerrar sesión
   import { onMount } from "svelte";
 
-  let searchQuery = ""; // Variable reactiva para almacenar el texto de búsqueda
-  let filteredModules = [...modules]; // Inicialmente, mostramos todos los módulos
+  let datosUsuario;
+  usuario.subscribe((valor) => (datosUsuario = valor));
 
-  // Función para filtrar módulos según la búsqueda
+  let busqueda = "";
+  let modulosDisponibles = [];
+  let modulosFiltrados = [];
+
+  // Definir módulos según el rol del usuario
+  const modulos = {
+    admin: [
+      { nombre: "Facturación", ruta: "/facturacion", icono: "facturacion.svg" },
+      { nombre: "Finanzas", ruta: "/finanzas", icono: "finanzas.svg" },
+      { nombre: "Recursos Humanos", ruta: "/recursos-humanos", icono: "recursos_humanos.svg" }
+    ],
+    empleado: [
+      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.svg" },
+      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.svg" },
+    ]
+  };
+
+  // Filtrar módulos cuando se actualiza el usuario
+  onMount(() => {
+    if (datosUsuario?.rol) {
+      modulosDisponibles = modulos[datosUsuario.rol] || [];
+      modulosFiltrados = [...modulosDisponibles];
+    }
+  });
+
+  // Filtrar módulos en la barra de búsqueda
   function buscarModulo() {
-    if (searchQuery.trim() === "") {
-      filteredModules = [...modules]; // Si el campo está vacío, mostramos todos
+    if (busqueda.trim() === "") {
+      modulosFiltrados = [...modulosDisponibles];
     } else {
-      filteredModules = modules.filter((modulo) =>
-        modulo.name.toLowerCase().includes(searchQuery.toLowerCase())
+      modulosFiltrados = modulosDisponibles.filter((modulo) =>
+        modulo.nombre.toLowerCase().includes(busqueda.toLowerCase())
       );
     }
   }
 
-  function logout() {
-    push("/"); // Redirige al login o página de inicio
+  // Cerrar sesión
+  function salir() {
+    cerrarSesion();
+    push("/login");
   }
 </script>
 
-<div class="header">
-  <div class="search-container">
+<div class="barra-navegacion">
+  <div class="contenedor-busqueda">
     <input
-      class="search"
+      class="busqueda"
       type="text"
       placeholder="Buscar módulos..."
-      bind:value={searchQuery}
+      bind:value={busqueda}
       on:input={buscarModulo}
     />
 
     <!-- Resultados de búsqueda -->
-    {#if searchQuery && filteredModules.length > 0}
-      <ul class="search-results">
-        {#each filteredModules as modulo}
-          <li on:click={() => irA(modulo.ruta)}>
-            <img src={`/icons/${modulo.icon}`} alt={modulo.name} class="icon" />
-            {modulo.name}
+    {#if busqueda && modulosFiltrados.length > 0}
+      <ul class="resultados-busqueda">
+        {#each modulosFiltrados as modulo}
+          <li on:click={() => push(modulo.ruta)}>
+            <img src={`/icons/${modulo.icono}`} alt={modulo.nombre} class="icono" />
+            {modulo.nombre}
           </li>
         {/each}
       </ul>
     {/if}
   </div>
 
-  <button class="logout-button" on:click={logout}>Cerrar sesión</button>
+  {#if datosUsuario}
+    <button class="boton-salir" on:click={salir}>Cerrar sesión</button>
+  {/if}
 </div>
 
 <style>
-  .header {
+  .barra-navegacion {
     background: white;
     padding: 20px 50px;
     display: flex;
@@ -60,11 +90,11 @@
     position: relative;
   }
 
-  .search-container {
+  .contenedor-busqueda {
     position: relative;
   }
 
-  .search {
+  .busqueda {
     padding: 10px;
     width: 200px;
     border: 1px solid #ddd;
@@ -72,7 +102,7 @@
   }
 
   /* Estilos para los resultados de búsqueda */
-  .search-results {
+  .resultados-busqueda {
     position: absolute;
     top: 100%;
     left: 0;
@@ -87,7 +117,7 @@
     z-index: 10;
   }
 
-  .search-results li {
+  .resultados-busqueda li {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -95,17 +125,17 @@
     transition: background 0.2s;
   }
 
-  .search-results li:hover {
+  .resultados-busqueda li:hover {
     background: #f3f4f6;
   }
 
-  .search-results img.icon {
+  .resultados-busqueda img.icono {
     width: 20px;
     height: 20px;
     margin-right: 10px;
   }
 
-  .logout-button {
+  .boton-salir {
     background-color: #2563eb;
     color: white;
     border: none;
@@ -116,16 +146,16 @@
     border-radius: 0.5rem;
   }
 
-  .logout-button:hover {
+  .boton-salir:hover {
     background-color: #1c52c5;
   }
 
   @media (max-width: 800px) {
-    .header {
+    .barra-navegacion {
       padding: 20px;
     }
 
-    .search {
+    .busqueda {
       width: 100px;
     }
   }
