@@ -45,7 +45,7 @@ onAuthStateChanged(autenticacion, async (usuarioActual) => {
     const datosUsuario = await getDoc(referenciaUsuario);
 
     if (datosUsuario.exists()) {
-      usuario.set({ correo: usuarioActual.email, rol: datosUsuario.data().rol });
+      usuario.set({ correo: datosUsuario.data().email, rol: datosUsuario.data().rol });
     } else {
       usuario.set(null);
     }
