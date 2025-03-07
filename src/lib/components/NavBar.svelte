@@ -11,26 +11,7 @@
   let modulosDisponibles = [];
   let modulosFiltrados = [];
 
-  // Definir módulos según el rol del usuario
-  const modulos = {
-    admin: [
-      { nombre: "Facturación", ruta: "/facturacion", icono: "facturacion.svg" },
-      { nombre: "Finanzas", ruta: "/finanzas", icono: "finanzas.svg" },
-      { nombre: "Recursos Humanos", ruta: "/recursos-humanos", icono: "recursos_humanos.svg" }
-    ],
-    empleado: [
-      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.svg" },
-      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.svg" },
-    ]
-  };
-
-  // Filtrar módulos cuando se actualiza el usuario
-  onMount(() => {
-    if (datosUsuario?.rol) {
-      modulosDisponibles = modulos[datosUsuario.rol] || [];
-      modulosFiltrados = [...modulosDisponibles];
-    }
-  });
+  
 
   // Filtrar módulos en la barra de búsqueda
   function buscarModulo() {
@@ -46,7 +27,7 @@
   // Cerrar sesión
   function salir() {
     cerrarSesion();
-    push("/login");
+    push("/");
   }
 </script>
 
