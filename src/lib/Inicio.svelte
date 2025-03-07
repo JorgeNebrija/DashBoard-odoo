@@ -4,25 +4,27 @@
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
   import { usuario } from "../lib/store";  // ← Importar el store del usuario
-  
-  // Lista completa de módulos
-  const modulos = {
-  admin: [
-    { nombre: "Facturación", ruta: "/facturacion", icon: "facturacion.png" },
-    { nombre: "Finanzas", ruta: "/finanzas", icon: "finanzas.png" },
-    { nombre: "Recursos Humanos", ruta: "/rrhh", icon: "rrhh.png" },
-    { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
-    { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
-  ],
-  empleado: [
-    { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
-    { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
-  ]
-};
+  import Sortable from "sortablejs";
 
+  // Lista de módulos según el rol del usuario
+  const modulos = {
+    admin: [
+      { nombre: "Facturación", ruta: "/facturacion", icon: "facturacion.png" },
+      { nombre: "Finanzas", ruta: "/finanzas", icon: "finanzas.png" },
+      { nombre: "Recursos Humanos", ruta: "/rrhh", icon: "rrhh.png" },
+      { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
+      { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
+    ],
+    empleado: [
+      { nombre: "Ventas", ruta: "/ventas", icon: "ventas.png" },
+      { nombre: "Inventario", ruta: "/inventario", icon: "inventario.png" }
+    ]
+  };
 
   let datosUsuario;
   let modulosFiltrados = [];
+  let listElement;
+  const clave_sesion = "orden_modulo";
 
   usuario.subscribe((valor) => {
     datosUsuario = valor;
@@ -30,20 +32,40 @@
     // Filtrar módulos según el rol
     if (datosUsuario?.rol) {
       modulosFiltrados = modulos[datosUsuario.rol] || [];
+      
+      // Cargar orden desde sessionStorage si existe
+      if (sessionStorage.getItem(clave_sesion)) {
+        const ordenGuardado = JSON.parse(sessionStorage.getItem(clave_sesion));
+        modulosFiltrados = ordenGuardado;
+      }
     }
   });
 
   function irA(ruta) {
     push(ruta);
   }
-</script>
 
+  onMount(() => {
+    Sortable.create(listElement, {
+      animation: 200,
+      ghostClass: "sortable-ghost", // Clase que se aplica al ítem fantasma
+      chosenClass: "sortable-chosen", // Clase mientras arrastras
+      dragClass: "sortable-drag", // Clase opcional para más control
+      onEnd: (evt) => {
+        const [movedItem] = modulosFiltrados.splice(evt.oldIndex, 1);
+        modulosFiltrados.splice(evt.newIndex, 0, movedItem);
+        sessionStorage.setItem(clave_sesion, JSON.stringify(modulosFiltrados));
+      },
+    });
+  });
+</script>
 
 <div class="container">
   <SideBar />
+
   <div class="content">
     <NavBar />
-    <div class="grid">
+    <div class="grid" bind:this={listElement}>
       {#each modulosFiltrados as modulo}
         <div class="module" on:click={() => irA(modulo.ruta)}>
           <img src={`/icons/${modulo.icon}`} alt={modulo.nombre} width="24" height="24" />
