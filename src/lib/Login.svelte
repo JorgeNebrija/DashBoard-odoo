@@ -12,7 +12,7 @@
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Obtener el rol del usuario desde Firestore
+      // Obtener el rol del usuario desde Firestor
       const userRef = doc(db, "usuarios", user.uid);
       const userSnap = await getDoc(userRef);
 
