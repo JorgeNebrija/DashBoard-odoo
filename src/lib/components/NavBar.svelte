@@ -91,7 +91,9 @@
     border-bottom: 1px solid #ddd;
     position: relative;
   }
-
+h1{
+  
+}
   .contenedor-busqueda {
     position: relative;
   }

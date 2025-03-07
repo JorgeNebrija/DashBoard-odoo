@@ -35,6 +35,7 @@
   .sidebar h1 {
     margin-bottom: 20px;
     color: #2563eb;
+    text-align: left;
   }
 
   .sidebar ul {
