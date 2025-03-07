@@ -1,33 +1,35 @@
 <script>
-    import { usuario } from "../store"; // Importamos el store del usuario
+    import { usuario } from "../store";
     import { push } from "svelte-spa-router";
     import { onMount } from "svelte";
   
-    let datosUsuario;
-    let cargando = true; // Para manejar el estado de carga
+    export let componente; // Componente protegido
   
-    // Verificar el estado del usuario al montar el componente
+    let datosUsuario;
+    let cargando = true;
+  
     onMount(() => {
       usuario.subscribe((valor) => {
+        console.log("Valor del usuario en ProteccionRuta:", valor);
         datosUsuario = valor;
         cargando = false;
   
-        // Si el usuario no está autenticado, redirigirlo al login
         if (!datosUsuario) {
-          push("/login");
+          console.log("Usuario no autenticado. Redirigiendo...");
+          push("/");
         }
       });
     });
   </script>
   
   {#if cargando}
-    <!-- Indicador de carga mientras se verifica la sesión -->
     <div class="cargando">
       <p>Verificando acceso...</p>
     </div>
+  {:else if datosUsuario}
+    <svelte:component this={componente} />
   {:else}
-    <!-- Si el usuario está autenticado, se muestra el contenido -->
-    <slot />
+    <p>Redirigiendo...</p>
   {/if}
   
   <style>

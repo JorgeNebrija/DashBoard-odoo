@@ -2,15 +2,18 @@
   import { autenticacion, baseDeDatos, signInWithEmailAndPassword, getDoc, doc } from "../lib/firebase";
   import { push } from "svelte-spa-router";
   import { usuario } from "../lib/store";
-  
+
   let correo = "";
   let contrasena = "";
   let error = false;
 
   async function validarDatos() {
+    error = false; // Reiniciar estado de error antes de validar
+
     try {
       const credencialesUsuario = await signInWithEmailAndPassword(autenticacion, correo, contrasena);
       const usuarioActual = credencialesUsuario.user;
+      console.log("UID del usuario:", usuarioActual.uid);
 
       // Obtener el rol del usuario desde Firestore
       const referenciaUsuario = doc(baseDeDatos, "usuarios", usuarioActual.uid);
@@ -18,15 +21,16 @@
 
       if (datosUsuario.exists()) {
         const usuarioDatos = datosUsuario.data();
-        usuario.set({ correo: usuarioActual.email, rol: usuarioDatos.rol });  // Guardamos en el store
+        console.log("Datos en Firestore:", usuarioDatos);
 
-        push("/inicio");  // Redirigir a inicio
+        usuario.set({ correo: usuarioActual.email, rol: usuarioDatos.rol });
+        push("/inicio");
       } else {
         console.error("Usuario no encontrado en Firestore");
         error = true;
       }
     } catch (err) {
-      console.error(err);
+      console.error("Error en inicio de sesión:", err);
       error = true;
     }
   }
@@ -61,6 +65,7 @@
     </div>
   </div>
 </div>
+
 
 <style>
   .contenedor-login {
