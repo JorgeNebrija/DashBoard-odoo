@@ -1,5 +1,11 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged, 
+  createUserWithEmailAndPassword 
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { usuario } from "./store";
 
@@ -20,7 +26,6 @@ const baseDeDatos = getFirestore(aplicacion);
 // Función para registrar usuarios
 async function registrarUsuario(correo, contrasena, rol = "empleado") {
   try {
-    // Crear usuario en Firebase Authentication
     const credencialesUsuario = await createUserWithEmailAndPassword(autenticacion, correo, contrasena);
     const usuarioNuevo = credencialesUsuario.user;
 
@@ -45,7 +50,7 @@ onAuthStateChanged(autenticacion, async (usuarioActual) => {
     const datosUsuario = await getDoc(referenciaUsuario);
 
     if (datosUsuario.exists()) {
-      usuario.set({ correo: datosUsuario.data().email, rol: datosUsuario.data().rol });
+      usuario.set({ correo: datosUsuario.data().correo, rol: datosUsuario.data().rol });
     } else {
       usuario.set(null);
     }
@@ -60,4 +65,14 @@ async function cerrarSesion() {
   usuario.set(null);
 }
 
-export { autenticacion, baseDeDatos, signInWithEmailAndPassword, createUserWithEmailAndPassword, registrarUsuario, cerrarSesion, onAuthStateChanged , getDoc, doc };
+export { 
+  autenticacion, 
+  baseDeDatos, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  registrarUsuario, 
+  cerrarSesion, 
+  onAuthStateChanged, 
+  getDoc, 
+  doc 
+};
