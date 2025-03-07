@@ -10,6 +10,7 @@
   let busqueda = "";
   let modulosDisponibles = [];
 
+  $: modulosDisponibles = modulos[datosUsuario.rol]
   // Al montar el componente, filtramos los módulos según el usuario
   onMount(() => {
     if (datosUsuario?.rol) {
@@ -65,6 +66,7 @@
           {module.nombre}
         </li>
       {/each}
+
     </ul>
   </div>
   <button on:click={() => cambiarTema()} class="boton-tema">Cambiar Tema</button
