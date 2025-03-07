@@ -165,7 +165,7 @@ cursor: grab;
   }
 
   .fecha {
-    background: #333;
+    background:var(--color-fondo);
     color: var(--color-texto);
     padding: 10px;
     text-align: center;
