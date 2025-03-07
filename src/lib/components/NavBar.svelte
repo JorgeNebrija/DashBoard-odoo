@@ -68,11 +68,11 @@
     {/if}
   </div>
 
-  <div style="display: flex; flex-direction:row; align-items:center">
+  <div style="display: flex; flex-direction:row; align-items:center" class="usuario">
     {#if datosUsuario}
       <p style="margin-right: 10px; display: flex; flex-direction:row; align-items:center; gap:5px">
         {datosUsuario.correo}
-        {#if datosUsuario.rol !== "Empleado"}
+        {#if datosUsuario.rol !== "empleado"}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="20px"
@@ -99,7 +99,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--color-borde);
-    position: relative;
+
   }
   h1 {
   }
@@ -109,7 +109,7 @@
 
   .busqueda {
     padding: 10px;
-    width: 200px;
+   max-width: 200px;
     border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
     background-color: transparent;
@@ -160,7 +160,6 @@
     padding: 10px;
     font-weight: bold;
     cursor: pointer;
-    width: 150px;
     border-radius: 0.5rem;
   }
 
@@ -170,7 +169,7 @@
 
   @media (max-width: 800px) {
     .barra-navegacion {
-      padding: 20px;
+      padding: 20px 20px;
     }
 
     .busqueda {
