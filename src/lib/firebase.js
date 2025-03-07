@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { usuario } from "./store";
 
 const configuracionFirebase = {
@@ -17,7 +17,28 @@ const aplicacion = initializeApp(configuracionFirebase);
 const autenticacion = getAuth(aplicacion);
 const baseDeDatos = getFirestore(aplicacion);
 
-// Detectar cambios en la sesión del usuario y mantener la persistencia
+// Función para registrar usuarios
+async function registrarUsuario(correo, contrasena, rol = "empleado") {
+  try {
+    // Crear usuario en Firebase Authentication
+    const credencialesUsuario = await createUserWithEmailAndPassword(autenticacion, correo, contrasena);
+    const usuarioNuevo = credencialesUsuario.user;
+
+    // Guardar usuario en Firestore con el UID correcto
+    await setDoc(doc(baseDeDatos, "usuarios", usuarioNuevo.uid), {
+      correo: usuarioNuevo.email,
+      rol: rol
+    });
+
+    console.log("Usuario registrado y guardado en Firestore:", usuarioNuevo.email);
+    return usuarioNuevo;
+  } catch (error) {
+    console.error("Error al registrar usuario:", error.message);
+    throw error;
+  }
+}
+
+// Detectar cambios en la sesión del usuario
 onAuthStateChanged(autenticacion, async (usuarioActual) => {
   if (usuarioActual) {
     const referenciaUsuario = doc(baseDeDatos, "usuarios", usuarioActual.uid);
@@ -39,4 +60,4 @@ async function cerrarSesion() {
   usuario.set(null);
 }
 
-export { autenticacion, baseDeDatos, signInWithEmailAndPassword, cerrarSesion, getDoc, doc };
+export { autenticacion, baseDeDatos, signInWithEmailAndPassword, registrarUsuario, cerrarSesion, getDoc, doc };
