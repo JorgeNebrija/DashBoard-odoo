@@ -60,7 +60,7 @@
               width="24px"
               fill="#012B66"><path d={modulo.icono} /></svg
             >
-<div class="spacer" style="width: 5px;"></div>
+            <div class="spacer" style="width: 5px;"></div>
             {modulo.nombre}
           </li>
         {/each}
@@ -68,9 +68,26 @@
     {/if}
   </div>
 
-  {#if datosUsuario}
-    <button class="boton-salir" on:click={salir}>Cerrar sesión</button>
-  {/if}
+  <div style="display: flex; flex-direction:row; align-items:center">
+    {#if datosUsuario}
+      <p style="margin-right: 10px; display: flex; flex-direction:row; align-items:center; gap:5px">
+        {datosUsuario.correo}
+        {#if datosUsuario.rol !== "Empleado"}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+            fill="#0D99FF"
+
+            ><path
+              d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+            /></svg
+          >{/if}
+      </p>
+      <button class="boton-salir" on:click={salir}>Cerrar sesión</button>
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -123,13 +140,13 @@
   }
 
   .resultados-busqueda li:hover {
-  color: #2563eb;
-font-weight: bold;
-}
+    color: #2563eb;
+    font-weight: bold;
+  }
 
-.resultados-busqueda li:hover svg {
-  fill: #2563eb;
-}
+  .resultados-busqueda li:hover svg {
+    fill: #2563eb;
+  }
   .resultados-busqueda img.icono {
     width: 20px;
     height: 20px;
