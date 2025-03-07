@@ -1,24 +1,24 @@
 <script>
-  import { auth, db, signInWithEmailAndPassword, getDoc, doc } from "../lib/firebase";
+  import { autenticacion, baseDeDatos, signInWithEmailAndPassword, getDoc, doc } from "../lib/firebase";
   import { push } from "svelte-spa-router";
   import { usuario } from "../lib/store";
   
-  let email = "";
-  let password = "";
+  let correo = "";
+  let contrasena = "";
   let error = false;
 
   async function validarDatos() {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const credencialesUsuario = await signInWithEmailAndPassword(autenticacion, correo, contrasena);
+      const usuarioActual = credencialesUsuario.user;
 
-      // Obtener el rol del usuario desde Firestor
-      const userRef = doc(db, "usuarios", user.uid);
-      const userSnap = await getDoc(userRef);
+      // Obtener el rol del usuario desde Firestore
+      const referenciaUsuario = doc(baseDeDatos, "usuarios", usuarioActual.uid);
+      const datosUsuario = await getDoc(referenciaUsuario);
 
-      if (userSnap.exists()) {
-        const userData = userSnap.data();
-        usuario.set({ email: user.email, rol: userData.rol });  // Guardamos en el store
+      if (datosUsuario.exists()) {
+        const usuarioDatos = datosUsuario.data();
+        usuario.set({ correo: usuarioActual.email, rol: usuarioDatos.rol });  // Guardamos en el store
 
         push("/inicio");  // Redirigir a inicio
       } else {
@@ -33,29 +33,29 @@
 </script>
 
 <!-- Contenedor del formulario de inicio de sesión -->
-<div class="login-container">
-  <div class="login-card">
+<div class="contenedor-login">
+  <div class="tarjeta-login">
     <h1>Iniciar Sesión</h1>
 
     <form class="formulario" on:submit|preventDefault={validarDatos}>
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" bind:value={email} placeholder="correo@ejemplo.com" required />
+      <div class="grupo-formulario">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" bind:value={correo} placeholder="correo@ejemplo.com" required />
       </div>
 
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" bind:value={password} placeholder="••••••••" required />
+      <div class="grupo-formulario">
+        <label for="contrasena">Contraseña</label>
+        <input type="password" id="contrasena" bind:value={contrasena} placeholder="••••••••" required />
       </div>
 
       {#if error}
-        <div class="error">Credenciales Incorrectas</div>
+        <div class="mensaje-error">Credenciales incorrectas</div>
       {/if}
 
-      <button type="submit" class="boton"> Iniciar Sesión </button>
+      <button type="submit" class="boton">Iniciar Sesión</button>
     </form>
 
-    <div class="demo-credentials">
+    <div class="credenciales-demo">
       <p>Credenciales de prueba:</p>
       <code>admin@example.com / admin</code>
     </div>
@@ -63,15 +63,15 @@
 </div>
 
 <style>
-  .login-container {
+  .contenedor-login {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-background);
+    background-color: var(--color-fondo);
   }
 
-  .login-card {
+  .tarjeta-login {
     background-color: white;
     padding: 2rem;
     border-radius: 0.5rem;
@@ -95,7 +95,7 @@
   }
 
   h1 {
-    color: var(--color-primary);
+    color: var(--color-primario);
     margin-bottom: 1.5rem;
     text-align: center;
   }
@@ -107,7 +107,7 @@
     gap: 1rem;
   }
 
-  .form-group {
+  .grupo-formulario {
     width: 100%;
     text-align: left;
   }
@@ -115,7 +115,7 @@
   label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--color-text);
+    color: var(--color-texto);
   }
 
   input {
@@ -127,17 +127,17 @@
 
   input:focus {
     outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 2px var(--color-primario-alpha);
   }
 
-  .error {
+  .mensaje-error {
     color: #ef4444;
     font-size: 0.875rem;
     margin-top: 1rem;
   }
 
-  .demo-credentials {
+  .credenciales-demo {
     margin-top: 2rem;
     padding: 1rem;
     font-size: 0.875rem;
