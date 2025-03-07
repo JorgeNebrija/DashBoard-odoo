@@ -22,6 +22,8 @@ export const modulos = {
       ruta: "/fabricacion",
       icono: "/icons/fabricacion.png",
     },
+    {nombre: "Graficas", ruta: "/graficas", icono:"/icons/graficas.png"}
+
   ],
   empleado: [
     { nombre: "Inicio", ruta: "/inicio", icono: "/icons/inicio.png" },
@@ -36,6 +38,7 @@ export const modulos = {
       ruta: "/fabricacion",
       icono: "/icons/fabricacion.png",
     },
+    {nombre: "Graficas", ruta: "/graficas", icono:"/icons/graficas.png"}
   ],
 };
 

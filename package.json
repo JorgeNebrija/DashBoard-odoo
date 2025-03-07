@@ -18,6 +18,7 @@
     "d3": "^7.9.0",
     "firebase": "^11.4.0",
     "lucide-svelte": "^0.477.0",
+    "recharts": "^2.15.1",
     "sortablejs": "^1.15.6",
     "svelte-routing": "^2.13.0",
     "svelte-spa-router": "^4.0.1"

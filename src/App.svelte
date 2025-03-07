@@ -9,6 +9,9 @@
   import RecursosHumanos from "./lib/modules/RecursosHumanos.svelte";
   import Ventas from "./lib/modules/Ventas.svelte";
   import Fabricacion from "./lib/modules/Fabricacion.svelte";
+  import Graficas from "./lib/modules/Graficas.svelte";
+
+
 
   const routes = {
     "/": Login,
@@ -20,6 +23,7 @@
     "/rrhh": RecursosHumanos,
     "/ventas": Ventas,
     "/fabricacion": Fabricacion,
+    "/graficas" : Graficas
   };
 </script>
 
