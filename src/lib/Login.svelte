@@ -1,18 +1,32 @@
 <script>
-  import usuariosJSON from "../data/usuarios.json";
+  import { auth, db, signInWithEmailAndPassword, getDoc, doc } from "../lib/firebase";
   import { push } from "svelte-spa-router";
-
+  import { usuario } from "../lib/store";
+  
   let email = "";
   let password = "";
   let error = false;
 
-  function validarDatos() {
-    if (
-      email === usuariosJSON.usuarios[0].correo &&
-      password === usuariosJSON.usuarios[0].contrasena
-    ) {
-      push("/inicio");
-    } else {
+  async function validarDatos() {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Obtener el rol del usuario desde Firestore
+      const userRef = doc(db, "usuarios", user.uid);
+      const userSnap = await getDoc(userRef);
+
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        usuario.set({ email: user.email, rol: userData.rol });  // Guardamos en el store
+
+        push("/inicio");  // Redirigir a inicio
+      } else {
+        console.error("Usuario no encontrado en Firestore");
+        error = true;
+      }
+    } catch (err) {
+      console.error(err);
       error = true;
     }
   }
@@ -26,27 +40,14 @@
     <form class="formulario" on:submit|preventDefault={validarDatos}>
       <div class="form-group">
         <label for="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
-          bind:value={email}
-          placeholder="correo@ejemplo.com"
-          required
-        />
+        <input type="email" id="email" bind:value={email} placeholder="correo@ejemplo.com" required />
       </div>
 
       <div class="form-group">
         <label for="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          bind:value={password}
-          placeholder="••••••••"
-          required
-        />
+        <input type="password" id="password" bind:value={password} placeholder="••••••••" required />
       </div>
 
-      <!-- Muestra un mensaje de error si la autenticación falla -->
       {#if error}
         <div class="error">Credenciales Incorrectas</div>
       {/if}
@@ -54,7 +55,6 @@
       <button type="submit" class="boton"> Iniciar Sesión </button>
     </form>
 
-    <!-- Información sobre credenciales de prueba -->
     <div class="demo-credentials">
       <p>Credenciales de prueba:</p>
       <code>admin@example.com / admin</code>
@@ -71,6 +71,14 @@
     background-color: var(--color-background);
   }
 
+  .login-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
   .boton {
     background-color: #2563eb;
     color: white;
@@ -80,16 +88,6 @@
     cursor: pointer;
     width: 150px;
     border-radius: 0.5rem;
-  }
-
-  .formulario {
-    padding: 30px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 0.5rem;
-    width: 300px;
   }
 
   .boton:hover {
@@ -102,8 +100,16 @@
     text-align: center;
   }
 
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
   .form-group {
-    margin-bottom: 1rem;
+    width: 100%;
+    text-align: left;
   }
 
   label {
@@ -113,9 +119,9 @@
   }
 
   input {
-    width: 250px;
-    border: 1px #ccc solid;
-    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 0.75rem;
     border-radius: 0.25rem;
   }
 
@@ -127,25 +133,17 @@
 
   .error {
     color: #ef4444;
-    margin-bottom: 1rem;
     font-size: 0.875rem;
-  }
-
-  button {
-    width: 100%;
+    margin-top: 1rem;
   }
 
   .demo-credentials {
     margin-top: 2rem;
-    padding-top: 1rem;
+    padding: 1rem;
     font-size: 0.875rem;
     background-color: white;
-    padding: 30px;
     border-radius: 0.5rem;
-  }
-
-  .demo-credentials p {
-    margin-bottom: 0.5rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   }
 
   code {
@@ -153,7 +151,6 @@
     padding: 0.5rem;
     background-color: #eaeaea;
     border-radius: 0.25rem;
-    margin-bottom: 0.5rem;
     font-family: monospace;
   }
 </style>
