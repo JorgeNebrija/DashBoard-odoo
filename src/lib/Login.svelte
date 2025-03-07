@@ -60,9 +60,9 @@
     </form>
 
     <div class="credenciales-demo">
-      <p>Credenciales de prueba:</p>
-      <code>admin@example.com / admin</code>
+      <p>¿No tiene cuenta? <a href="/registro" on:click|preventDefault={() => push("/registro")}>Regístrese aquí</a></p>
     </div>
+    
   </div>
 </div>
 

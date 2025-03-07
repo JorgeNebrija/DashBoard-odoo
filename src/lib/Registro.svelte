@@ -1,4 +1,5 @@
 <script>
+  import { push } from "svelte-spa-router";
     import { registrarUsuario } from "../lib/firebase";
   
     let correo = "";
@@ -46,6 +47,10 @@
             <option value="empleado">Empleado</option>
           </select>
         </div>
+        <div class="credenciales-demo">
+            <p>¿Ya tiene una cuenta? <a href="/login" on:click|preventDefault={() => push("/")}>Inicie sesión aquí</a></p>
+        </div>
+          
   
         {#if error}
           <div class="mensaje-error">{error}</div>
