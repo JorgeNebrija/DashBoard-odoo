@@ -18,25 +18,26 @@
 
   function cambiarTema() {
     let root = document.documentElement; // Accede a :root
-    let temaActual = getComputedStyle(root).getPropertyValue("--color-fondo").trim(); // Obtiene el color actual
+    let temaActual = getComputedStyle(root)
+      .getPropertyValue("--color-fondo")
+      .trim(); // Obtiene el color actual
 
-    if (temaActual === "#f4f4f4") { 
-        // Cambiar al tema oscuro
-        root.style.setProperty("--color-fondo", "black");
-        root.style.setProperty("--color-elementos", "#1e1e1e");
-        root.style.setProperty("--color-texto", "grey");
-        root.style.setProperty("--color-hover", "#020202");
-        root.style.setProperty("--color-borde", "grey");
+    if (temaActual === "#f4f4f4") {
+      // Cambiar al tema oscuro
+      root.style.setProperty("--color-fondo", "black");
+      root.style.setProperty("--color-elementos", "#1e1e1e");
+      root.style.setProperty("--color-texto", "white");
+      root.style.setProperty("--color-hover", "#020202");
+      root.style.setProperty("--color-borde", "white");
     } else {
-        // Cambiar al tema claro
-        root.style.setProperty("--color-fondo", "#f4f4f4");
-        root.style.setProperty("--color-elementos", "white");
-        root.style.setProperty("--color-texto", "#012B66");
-        root.style.setProperty("--color-hover", "#f0f0f0");
-        root.style.setProperty("--color-borde", "#ddd");
+      // Cambiar al tema claro
+      root.style.setProperty("--color-fondo", "#f4f4f4");
+      root.style.setProperty("--color-elementos", "white");
+      root.style.setProperty("--color-texto", "#012B66");
+      root.style.setProperty("--color-hover", "#f0f0f0");
+      root.style.setProperty("--color-borde", "#ddd");
     }
-}
-
+  }
 </script>
 
 <div class="sidebar">
@@ -55,7 +56,8 @@
       {/each}
     </ul>
   </div>
-  <button on:click={()=>cambiarTema()}>Tema</button>
+  <button on:click={() => cambiarTema()} class="boton-tema">Cambiar Tema</button
+  >
 </div>
 
 <style>
@@ -68,6 +70,15 @@
     flex-direction: column;
     justify-content: space-between;
     border-right: 1px solid var(--color-borde);
+  }
+
+  .boton-tema {
+    background-color: transparent;
+    border: 1px var(--color-texto) solid;
+    padding: 10px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
   }
 
   .sidebar h1 {
