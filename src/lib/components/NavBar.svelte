@@ -11,12 +11,33 @@
   let modulosDisponibles = [];
   let modulosFiltrados = [];
 
-  
+  // Lista de módulos disponibles
+  const modulos = {
+    admin: [
+      { nombre: "Facturación", ruta: "/facturacion", icono: "facturacion.png" },
+      { nombre: "Finanzas", ruta: "/finanzas", icono: "finanzas.png" },
+      { nombre: "Recursos Humanos", ruta: "/rrhh", icono: "rrhh.png" },
+      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.png" },
+      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.png" }
+    ],
+    empleado: [
+      { nombre: "Ventas", ruta: "/ventas", icono: "ventas.png" },
+      { nombre: "Inventario", ruta: "/inventario", icono: "inventario.png" }
+    ]
+  };
 
-  // Filtrar módulos en la barra de búsqueda
+  // Al montar el componente, filtramos los módulos según el usuario
+  onMount(() => {
+    if (datosUsuario?.rol) {
+      modulosDisponibles = modulos[datosUsuario.rol] || [];
+      modulosFiltrados = [...modulosDisponibles]; // Inicializar la lista filtrada
+    }
+  });
+
+  // Función para buscar módulos en la barra de búsqueda
   function buscarModulo() {
     if (busqueda.trim() === "") {
-      modulosFiltrados = [...modulosDisponibles];
+      modulosFiltrados = [...modulosDisponibles]; // Restaurar si está vacío
     } else {
       modulosFiltrados = modulosDisponibles.filter((modulo) =>
         modulo.nombre.toLowerCase().includes(busqueda.toLowerCase())
