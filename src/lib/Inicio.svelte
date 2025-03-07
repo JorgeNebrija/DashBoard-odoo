@@ -4,6 +4,8 @@
   import NavBar from "./components/NavBar.svelte";
   import SideBar from "./components/SideBar.svelte";
   import { modules, irA } from "../modules";
+  import ProteccionRuta from "./components/ProteccionRuta.svelte";
+
 
   import Sortable from "sortablejs";
 
@@ -33,22 +35,23 @@
     });
   });
 </script>
+<ProteccionRuta>
+  <div class="container">
+    <SideBar />
 
-<div class="container">
-  <SideBar />
-
-  <div class="content">
-    <NavBar />
-    <div class="grid" bind:this={listElement}>
-      {#each modulesArray as module}
-        <div class="module" on:click={() => irA(module.ruta)}>
-          <img src={`/icons/${module.icon}`} alt="" width="24" height="24" />
-          <br />{module.name}
-        </div>
-      {/each}
+    <div class="content">
+      <NavBar />
+      <div class="grid" bind:this={listElement}>
+        {#each modulesArray as module}
+          <div class="module" on:click={() => irA(module.ruta)}>
+            <img src={`/icons/${module.icon}`} alt="" width="24" height="24" />
+            <br />{module.name}
+          </div>
+        {/each}
+      </div>
     </div>
   </div>
-</div>
+</ProteccionRuta>
 
 <style>
   .container {
