@@ -65,7 +65,7 @@
     <NavBar />
 
     <section class="dashboard">
-      <h1>Dashboard de Estadísticas</h1>
+      <h1>Estadísticas</h1>
 
       <div class="botones-filtro">
         <button on:click={() => cambiarDataset("facturacion")}>Facturación</button>
@@ -119,9 +119,10 @@ h1{
   .grafico-container {
     width: 100%;
     max-width: 600px;
-    height: 300px;
+    height: 350px;
     margin: auto;
     background-color: var(--color-elementos);
+    border-radius: 0.5rem;
 
   }
 </style>

@@ -166,7 +166,7 @@ input:focus {
     font-weight: 500;
 }
 .credenciales-demo{
-  padding: 10px;
+  padding: 20px;
 }
 
 </style>
