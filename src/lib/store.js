@@ -6,3 +6,5 @@ export const usuario = writable({
 });
 
 export const textoFiltrado = writable("Facturación")
+
+export const btnSideBarMovilActivo = writable(false);

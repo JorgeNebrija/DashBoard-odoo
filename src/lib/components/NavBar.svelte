@@ -1,10 +1,12 @@
 <script>
   import { push } from "svelte-spa-router";
-  import { usuario } from "../store";
+  import { usuario, btnSideBarMovilActivo } from "../store";
   import { cerrarSesion } from "../../lib/firebase";
   import { onMount } from "svelte";
   import { modulos } from "../../modules";
   import SideBar from "./SideBar.svelte"; // Importamos tu componente SideBar
+  import MovilSideBar from "./MovilSideBar.svelte";
+  import { fade, fly } from "svelte/transition";
 
   let datosUsuario;
   usuario.subscribe((valor) => (datosUsuario = valor));
@@ -37,6 +39,7 @@
   }
 
   function toggleSidebar() {
+    $btnSideBarMovilActivo = !btnSideBarMovilActivo;
     mostrarSidebar = !mostrarSidebar;
   }
 
@@ -54,13 +57,6 @@
       bind:value={busqueda}
       on:input={buscarModulo}
     />
-
-    {#if !mostrarSidebar}
-    <button class="menu-responsive" on:click={toggleSidebar}>
-      <img src="../icons/menu-sidebar.png" alt="Menú" />
-    </button>
-  {/if}
-
     {#if busqueda && modulosFiltrados.length > 0}
       <ul class="resultados-busqueda">
         {#each modulosFiltrados as modulo}
@@ -73,7 +69,6 @@
               fill="#012B66"><path d={modulo.icono} /></svg
             >
 
- 
             <div class="spacer" style="width: 5px;"></div>
             {modulo.nombre}
           </li>
@@ -82,9 +77,26 @@
     {/if}
   </div>
 
-  <div style="display: flex; flex-direction:row; align-items:center" class="usuario">
+  {#if !mostrarSidebar}
+    <button class="menu-responsive" on:click={toggleSidebar}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="24px"
+        viewBox="0 -960 960 960"
+        width="24px"
+        fill="#0D99FF"
+        ><path
+          d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
+        /></svg
+      >
+    </button>
+  {/if}
+
+  <div class="usuario">
     {#if datosUsuario}
-      <p style="margin-right: 10px; display: flex; flex-direction:row; align-items:center; gap:5px">
+      <p
+        style="margin-right: 10px; display: flex; flex-direction:row; align-items:center; gap:5px"
+      >
         {datosUsuario.correo}
         {#if datosUsuario.rol !== "empleado"}
           <svg
@@ -93,7 +105,6 @@
             viewBox="0 -960 960 960"
             width="20px"
             fill="#0D99FF"
-
             ><path
               d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
             /></svg
@@ -105,9 +116,9 @@
 </div>
 
 {#if mostrarSidebar}
-  <div class="overlay" on:click={cerrarSidebar}></div>
-  <div class="sidebar">
-    <SideBar />
+  <div class="overlay" on:click={cerrarSidebar} transition:fade="{{duration: 300 }}"></div>
+  <div class="sidebar" transition:fly="{{ x: -200, duration: 300 }}">
+    <MovilSideBar />
   </div>
 {/if}
 
@@ -120,7 +131,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--color-borde);
-
+    width: calc(100vw - 300px);
   }
 
   .contenedor-busqueda {
@@ -129,10 +140,16 @@
 
   .busqueda {
     padding: 10px;
-   max-width: 200px;
+    max-width: 200px;
     border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
     background-color: transparent;
+  }
+
+  .usuario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .resultados-busqueda {
@@ -172,7 +189,6 @@
     margin-right: 10px;
     background-color: var(--color-hover);
     border-radius: 0.5rem;
-
   }
 
   .boton-salir {
@@ -220,7 +236,6 @@
     height: 100%;
     background: var(--color-elementos);
     z-index: 10;
-    padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
   }
@@ -228,6 +243,7 @@
   @media (max-width: 800px) {
     .barra-navegacion {
       padding: 20px 20px;
+      width: calc(100vw - 40px);
     }
 
     .busqueda {
@@ -236,6 +252,10 @@
 
     .menu-responsive {
       display: block;
+    }
+
+    .usuario {
+      display: none;
     }
   }
 </style>

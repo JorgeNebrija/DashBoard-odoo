@@ -40,3 +40,15 @@ svg {
   fill: var(--color-texto);
   transition: none;
 }
+
+@media (max-width:800px) {
+
+  * {
+    font-size: small;
+  }
+
+  h1,
+  h2 {
+    font-size: small;
+  }
+}

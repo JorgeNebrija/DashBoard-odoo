@@ -58,7 +58,6 @@
   });
 </script>
 
-
 <div class="container">
   <SideBar />
 
@@ -144,6 +143,7 @@
     .grid {
       padding: 20px;
       gap: 30px;
+      margin-top: 30px;
     }
     .module {
       height: 100px;

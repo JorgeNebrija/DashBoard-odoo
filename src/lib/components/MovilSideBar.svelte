@@ -2,8 +2,6 @@
   import { onMount } from "svelte";
   import { modulos, irA } from "../../modules";
   import { usuario } from "../store";
-  import Module from "module";
-  import { btnSideBarMovilActivo } from "../store";
 
   let datosUsuario;
   usuario.subscribe((valor) => (datosUsuario = valor));
@@ -75,18 +73,14 @@
   >
 </div>
 
-
-
 <style>
   .sidebar {
-    width: 200px;
     background: var(--color-elementos);
     color: var(--color-texto);
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-right: 1px solid var(--color-borde);
   }
 
   .boton-tema {
@@ -96,6 +90,8 @@
     border-radius: 0.5rem;
     cursor: pointer;
     font-weight: bold;
+    width:200px;
+margin-top: 20px;
   }
 
   .sidebar h1 {
@@ -124,11 +120,5 @@
 
   .sidebar ul li:hover svg {
     fill: #2563eb;
-  }
-
-  @media (max-width: 800px) {
-    .sidebar {
-      display: none;
-    }
   }
 </style>
