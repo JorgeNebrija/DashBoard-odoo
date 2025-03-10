@@ -123,7 +123,7 @@ label {
 
 /* Input y Select con mismo tamaño */
 input, select {
-    width: 100%;
+    width: 93%;
     border: 1px solid #ccc;
     padding: 12px;
     border-radius: 0.5rem;

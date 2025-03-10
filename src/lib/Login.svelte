@@ -190,7 +190,7 @@
   }
 
   input {
-    width: 100%;
+    width: 93%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
