@@ -34,6 +34,27 @@
       "departamento": "Finanzas",
       "puesto": "Analista Financiero",
       "estado": "activo"
+    },
+    {
+      "id": "6",
+      "nombre": "Luis Fernández",
+      "departamento": "Soporte Técnico",
+      "puesto": "Técnico de Soporte",
+      "estado": "activo"
+    },
+    {
+      "id": "7",
+      "nombre": "Patricia Gómez",
+      "departamento": "Recursos Humanos",
+      "puesto": "Especialista en RRHH",
+      "estado": "activo"
+    },
+    {
+      "id": "8",
+      "nombre": "Roberto Díaz",
+      "departamento": "Operaciones",
+      "puesto": "Gerente de Operaciones",
+      "estado": "inactivo"
     }
   ],
   "eventos": [
@@ -91,6 +112,20 @@
       "titulo": "Cierre de Mes",
       "descripcion": "Informe general de desempeño",
       "dia": 30,
+      "mes": "ABR"
+    },
+    {
+      "id": "9",
+      "titulo": "Jornada de Puertas Abiertas",
+      "descripcion": "Evento para la comunidad",
+      "dia": 8,
+      "mes": "ABR"
+    },
+    {
+      "id": "10",
+      "titulo": "Taller de Innovación",
+      "descripcion": "Capacitación para nuevos procesos",
+      "dia": 15,
       "mes": "ABR"
     }
   ],
