@@ -44,7 +44,7 @@
 
     // Gráfico de línea
     chartInstanceLine = new Chart(chartCanvasLine, {
-      type: "line",
+      type: "bar",
       data: {
         labels: Object.keys(datos),
         datasets: [
