@@ -1,50 +1,49 @@
 {
-    "transacciones": [
-      {
-        "id": "1",
-        "descripcion": "Pago de nómina",
-        "fecha": "2024-03-01",
-        "monto": -45000,
-        "estado": "completado"
-      },
-      {
-        "id": "2",
-        "descripcion": "Venta de servicios",
-        "fecha": "2024-03-02",
-        "monto": 12500,
-        "estado": "completado"
-      },
-      {
-        "id": "3",
-        "descripcion": "Pago de servicios",
-        "fecha": "2024-03-03",
-        "monto": -2300,
-        "estado": "pendiente"
-      },
-      {
-        "id": "4",
-        "descripcion": "Venta de productos",
-        "fecha": "2024-03-04",
-        "monto": 18500,
-        "estado": "completado"
-      },
-      {
-        "id": "5",
-        "descripcion": "Compra de equipos",
-        "fecha": "2024-03-05",
-        "monto": -8700,
-        "estado": "completado"
-      }
-    ],
-    "resumen": {
-      "ingresosTotales": 345678,
-      "gastosTotales": 234567,
-      "balanceNeto": 111111
+  "transacciones": [
+    {
+      "id": "1",
+      "descripcion": "Pago de nómina",
+      "fecha": "2024-03-01",
+      "monto": -45000,
+      "estado": "completado"
     },
-    "estadisticas": {
-      "ingresosMensuales": 234567,
-      "crecimiento": 15.8,
-      "margenBeneficio": 82
+    {
+      "id": "2",
+      "descripcion": "Venta de servicios",
+      "fecha": "2024-03-02",
+      "monto": 12500,
+      "estado": "completado"
+    },
+    {
+      "id": "3",
+      "descripcion": "Pago de servicios",
+      "fecha": "2024-03-03",
+      "monto": -2300,
+      "estado": "pendiente"
+    },
+    {
+      "id": "4",
+      "descripcion": "Venta de productos",
+      "fecha": "2024-03-04",
+      "monto": 18500,
+      "estado": "completado"
+    },
+    {
+      "id": "5",
+      "descripcion": "Compra de equipos",
+      "fecha": "2024-03-05",
+      "monto": -8700,
+      "estado": "completado"
     }
+  ],
+  "resumen": {
+    "ingresosTotales": 41000,
+    "gastosTotales": 56000,
+    "balanceNeto": -15000
+  },
+  "estadisticas": {
+    "ingresosMensuales": 45,
+    "crecimiento": 35,
+    "margenBeneficio": 20
   }
-  
+}
