@@ -2,34 +2,79 @@
   "ventas": [
     {
       "fecha": "2023-01-01",
-      "cliente": "Cliente 1",
-      "producto": "Producto A",
-      "monto": 100,
+      "cliente": "María González",
+      "producto": "Auriculares Bluetooth Sony WH-CH510",
+      "monto": 49.99,
       "estado": "completado"
     },
     {
       "fecha": "2023-01-02",
-      "cliente": "Cliente 2",
-      "producto": "Producto B",
-      "monto": 200,
+      "cliente": "Carlos Pérez",
+      "producto": "Teclado Mecánico Logitech G413",
+      "monto": 89.99,
       "estado": "pendiente"
+    },
+    {
+      "fecha": "2023-01-03",
+      "cliente": "Lucía Ramírez",
+      "producto": "Monitor LG UltraWide 29”",
+      "monto": 199.99,
+      "estado": "completado"
+    },
+    {
+      "fecha": "2023-01-04",
+      "cliente": "Andrés Martínez",
+      "producto": "Ratón Inalámbrico Logitech MX Master 3",
+      "monto": 99.90,
+      "estado": "completado"
+    },
+    {
+      "fecha": "2023-01-05",
+      "cliente": "Sofía Torres",
+      "producto": "Disco SSD Samsung 1TB EVO",
+      "monto": 129.99,
+      "estado": "completado"
+    },
+    {
+      "fecha": "2023-01-06",
+      "cliente": "Javier López",
+      "producto": "Altavoz Inteligente Echo Dot 5ª Gen",
+      "monto": 59.99,
+      "estado": "pendiente"
+    },
+    {
+      "fecha": "2023-01-07",
+      "cliente": "Laura Fernández",
+      "producto": "Auriculares Bluetooth Sony WH-CH510",
+      "monto": 49.99,
+      "estado": "completado"
     }
   ],
   "productosDestacados": [
     {
-      "nombre": "Producto A",
-      "ventas": 150,
-      "ingresos": 1500
+      "nombre": "Auriculares Bluetooth Sony WH-CH510",
+      "ventas": 320,
+      "ingresos": 15996.8
     },
     {
-      "nombre": "Producto B",
-      "ventas": 100,
-      "ingresos": 1000
+      "nombre": "Teclado Mecánico Logitech G413",
+      "ventas": 215,
+      "ingresos": 19347.85
+    },
+    {
+      "nombre": "Monitor LG UltraWide 29”",
+      "ventas": 180,
+      "ingresos": 35998.2
+    },
+    {
+      "nombre": "Disco SSD Samsung 1TB EVO",
+      "ventas": 140,
+      "ingresos": 18198.6
     }
   ],
   "estadisticas": {
-    "ventasMensuales": 2500,
-    "nuevosClientes": 50,
-    "crecimiento": 10
+    "ventasMensuales": 600,
+    "nuevosClientes": 420,
+    "crecimiento": 280
   }
 }
